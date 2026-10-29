@@ -423,6 +423,36 @@ dialog::backdrop{background:rgba(15,22,10,.5);backdrop-filter:blur(2px)}
 .ck2 small{color:var(--muted);font-weight:600;margin-left:auto}
 .pickban{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--saffron-soft);border-radius:18px;padding:12px 14px;font-weight:800}
 
+
+/* Liste en vignettes */
+.legend{display:flex;flex-wrap:wrap;gap:6px}
+.legend span{font-size:12px;font-weight:800;color:var(--muted);background:var(--sunk);border-radius:99px;padding:3px 10px}
+.lsec{display:grid;gap:10px}
+.lsec h3{margin:0;display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:17px}
+.lsec h3 .emo{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow-s);font-size:19px}
+.lsec h3 small{font-family:var(--body);font-size:12px;color:var(--muted);font-weight:800;margin-left:auto;background:var(--sunk);border-radius:99px;padding:2px 9px}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:9px}
+.lcard{position:relative;display:grid;justify-items:center;align-content:start;gap:6px;padding:12px 6px 10px;border:0;border-radius:20px;background:var(--surface);box-shadow:var(--shadow-s);text-align:center;color:var(--ink);min-height:132px}
+.lcard .lpic{width:58px;height:58px;border-radius:50%;background:var(--sunk);display:grid;place-items:center;overflow:hidden;font-size:32px}
+.lcard .lpic img{width:100%;height:100%;object-fit:cover}
+.lcard .lq{position:absolute;top:8px;right:8px;background:var(--olive);color:var(--surface);font-size:11.5px;font-weight:800;border-radius:99px;padding:2px 8px;max-width:70%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lcard .lk{position:absolute;top:8px;left:9px;font-family:var(--emoji);font-size:13px}
+.lcard .ln{font-size:13px;font-weight:800;line-height:1.2}
+.lcard .lnote{font-size:11px;font-weight:700;color:var(--sky);line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.lcard.done{opacity:.55}
+.ihero{width:150px;height:150px;margin:0 auto;border-radius:50%;background:var(--sunk);display:grid;place-items:center;overflow:hidden;font-size:76px;box-shadow:var(--shadow-s)}
+.ihero img{width:100%;height:100%;object-fit:cover}
+.bigstep{grid-template-columns:44px minmax(64px,auto) 44px}
+.bigstep button{font-size:22px;padding:8px}
+.bigstep b{font-size:16px}
+label.photo{cursor:pointer}
+.bigemo{overflow:hidden}
+.bigemo img{width:100%;height:100%;object-fit:cover}
+.cnote{margin:4px 0 0;font-weight:800;color:var(--sky);font-size:16px}
+.seg2{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--sunk);border-radius:16px;padding:4px}
+.seg2 button{border:0;border-radius:12px;padding:11px;background:transparent;font-size:15px}
+.seg2 button[aria-pressed="true"]{background:var(--surface);box-shadow:var(--shadow-s)}
+.seg2 b{background:var(--olive);color:var(--surface);border-radius:99px;padding:0 7px;font-size:12px}
 </style>
 </head>
 <body>
@@ -767,6 +797,92 @@ LIB_RAW.push(
  ["🤧","Mouchoirs",6,"paquet",2.5],["🎞️","Film alimentaire",6,"pièce",2],["📜","Papier cuisson",6,"pièce",2],["🚿","Gel douche",6,"pièce",3],["🧴","Shampoing",6,"pièce",3.5],["⚪","Coton",6,"paquet",1.5]
 ].forEach(([e,n,r,u,p])=>{if(!CAT.some(c=>c.n===n))CAT.push({e,n,r,u,p})});
 
+// ===== Série 4 : tous les fruits et légumes de France, hygiène, maison =====
+[["🥬","Blettes",0,"botte",2.5],["🌸","Artichauts",0,"pièce",1.5],["🌱","Asperges",0,"botte",5],["🟣","Chou rouge",0,"pièce",1.8],["🥬","Chou blanc",0,"pièce",1.6],
+ ["🥬","Chou kale",0,"g",8],["🥬","Choux de Bruxelles",0,"g",4],["🥦","Chou romanesco",0,"pièce",2.5],["🥬","Chou chinois",0,"pièce",2],["🟢","Chou-rave",0,"pièce",1.2],
+ ["🥔","Céleri-rave",0,"pièce",2],["🌿","Cresson",0,"botte",1.8],["🥗","Mâche",0,"g",12],["🥗","Roquette",0,"g",14],["🥬","Laitue",0,"pièce",1],["🥬","Frisée",0,"pièce",1.5],
+ ["🥬","Scarole",0,"pièce",1.5],["🥗","Mesclun",0,"g",12],["🎃","Potimarron",0,"pièce",2.5],["🎃","Butternut",0,"pièce",2.5],["🎃","Potiron",0,"kg",2],["🎃","Courge spaghetti",0,"pièce",2.5],
+ ["🍅","Tomates cerises",0,"g",6],["🧅","Oignons rouges",0,"pièce",.35],["🫛","Petits pois frais",0,"g",6],["🫛","Fèves",0,"g",6],["🫘","Haricots beurre",0,"g",5],["🌶️","Piment",0,"pièce",.3],
+ ["🌽","Maïs doux",0,"pièce",.8],["⚫","Radis noir",0,"pièce",1],["🟡","Rutabaga",0,"pièce",1],["🟤","Salsifis",0,"g",6],["🥔","Topinambours",0,"g",4],["🥒","Cornichons",0,"g",8],
+ ["🍄","Champignons de Paris",0,"g",5],["🍄","Pleurotes",0,"g",12],["🍄","Cèpes",0,"g",40],["🍄","Girolles",0,"g",35],["🌿","Ciboulette",0,"botte",1],["🌿","Menthe",0,"botte",1],
+ ["🌿","Aneth",0,"botte",1.2],["🌿","Estragon",0,"botte",1.2],["🌿","Cerfeuil",0,"botte",1.2],["🌿","Romarin",0,"botte",1],["🌿","Thym frais",0,"botte",1],["🌾","Citronnelle",0,"pièce",.8],
+ ["🍋","Citron vert",0,"pièce",.4],["🍐","Coings",0,"pièce",1],["🍑","Abricots",0,"g",5],["🍒","Cerises",0,"g",8],["🍑","Pêches",0,"pièce",.6],["🍑","Nectarines",0,"pièce",.6],
+ ["🟣","Prunes",0,"g",4],["🟡","Mirabelles",0,"g",6],["🟢","Reines-claudes",0,"g",5],["🫐","Framboises",0,"g",20],["🫐","Myrtilles",0,"g",16],["🔴","Groseilles",0,"g",16],
+ ["⚫","Cassis",0,"g",16],["🫐","Mûres",0,"g",16],["🍈","Melon",0,"pièce",2.5],["🍉","Pastèque",0,"pièce",5],["🟣","Figues",0,"pièce",.5],["🍍","Ananas",0,"pièce",2.5],
+ ["🥭","Mangue",0,"pièce",1.8],["🟠","Papaye",0,"pièce",2.5],["💛","Fruits de la passion",0,"pièce",.6],["🔴","Litchis",0,"g",7],["🔴","Grenade",0,"pièce",1.5],["🟠","Kakis",0,"pièce",.8],
+ ["🍊","Oranges",0,"kg",2],["🍊","Mandarines",0,"kg",3],["🟡","Pamplemousses",0,"pièce",1],["🌿","Rhubarbe",0,"botte",3],["🌰","Noix",0,"g",12],["🌰","Noisettes",0,"g",15],
+ ["🌰","Amandes",0,"g",15],["🟤","Dattes",0,"g",8],
+ ["🧴","Déodorant",6,"pièce",3],["🩸","Serviettes hygiéniques",6,"paquet",3],["🩸","Tampons",6,"paquet",3.5],["🪒","Rasoirs",6,"paquet",5],["🪥","Brosses à dents",6,"paquet",3],
+ ["🧴","Crème hydratante",6,"pièce",5],["☀️","Crème solaire",6,"pièce",9],["🩹","Pansements",6,"paquet",3],["👶","Couches",6,"paquet",12],["🧻","Lingettes",6,"paquet",2.5],
+ ["🧽","Produit ménager",6,"pièce",3],["🚽","Produit WC",6,"pièce",2.5],["🧺","Adoucissant",6,"pièce",4],["🔋","Piles",6,"paquet",5],["💡","Ampoules",6,"pièce",4],["🟡","Moutarde",3,"pièce",1.5]
+].forEach(([e,n,r,u,p])=>{if(!CAT.some(c=>c.n===n))CAT.push({e,n,r,u,p})});
+// Équivalences pour le panier : un potimarron compte comme « Courge » dans les recettes, etc.
+const SYN={"Courge":["Potimarron","Butternut","Potiron","Courge spaghetti"],"Salade":["Laitue","Frisée","Scarole","Mesclun","Mâche","Roquette"],"Chou":["Chou blanc","Chou rouge","Chou chinois"],
+ "Tomates":["Tomates cerises"],"Champignons":["Champignons de Paris","Pleurotes","Cèpes","Girolles"],"Oignons":["Oignons rouges"],"Haricots verts":["Haricots beurre"],"Citron":["Citron vert"],"Clémentines":["Mandarines"]};
+
+LIB_RAW.push(
+["gratinblettes","Gratin de blettes au comté","🥬","vege","four",45,"a","pdt","Blettes 1, Comté 100, Lait 0.4, Beurre 30, Pommes de terre 500, farine",
+ "Séparez les côtes des feuilles, coupez-les en tronçons et faites-les cuire 10 min à l'eau salée, puis ajoutez les feuilles 3 min.|Préparez une béchamel : beurre, 30 g de farine et lait (Thermomix : 7 min, 90°C, vitesse 4).|Mélangez les blettes égouttées avec la béchamel dans un plat, couvrez de comté râpé.|Enfournez 20 min à 200°C. Servez avec des pommes de terre vapeur.","|fr"],
+["tarteblettes","Tarte aux blettes et chèvre","🥧","oeufs","four",50,"a","pain","Pâte brisée 1, Blettes 1, Œufs 3, Crème fraîche 20, Fromage de chèvre 1, Salade 1",
+ "Faites tomber les blettes émincées 8 min à la poêle, égouttez-les bien.|Étalez la pâte dans un moule, répartissez les blettes et le chèvre.|Battez œufs et crème, salez, poivrez, versez.|Enfournez 35 min à 190°C.","|fr"],
+["potimarronroti","Potimarron rôti, quinoa et feta","🎃","vege","airfryer",30,"a","quinoa","Potimarron 1, Quinoa 250, Feta 150, Roquette 80, Noisettes 40",
+ "Coupez le potimarron en quartiers avec la peau, retirez les graines, mélangez avec un filet d'huile.|Rôtissez 20 min à 190°C à l'Airfryer.|Faites cuire le quinoa.|Servez le potimarron sur le quinoa avec la roquette, la feta émiettée et les noisettes concassées.","|fr"],
+["artichauts","Artichauts vinaigrette et œufs durs","🌸","oeufs","cocotte",45,"e","pain","Artichauts 4, Œufs 6, Échalotes 1, Baguette 1, moutarde",
+ "Faites cuire les artichauts 35 min à l'eau bouillante salée (ou 15 min à l'autocuiseur).|Cuisez les œufs 10 min, écalez-les.|Préparez une vinaigrette moutarde-échalote.|Chacun effeuille son artichaut et trempe les feuilles dans la vinaigrette.","|fr"],
+["asperges","Asperges vertes rôties, œufs mollets et jambon cru","🌱","oeufs","airfryer",20,"e","pain","Asperges 2, Œufs 8, Jambon cru 8, Parmesan 30, Baguette 1",
+ "Coupez le bas des asperges, enrobez-les d'un filet d'huile.|Rôtissez 8 min à 200°C à l'Airfryer.|Cuisez les œufs 6 min, refroidissez et écalez-les.|Servez asperges, œufs et jambon cru avec des copeaux de parmesan et des mouillettes.","|fr"],
+["bruxelles","Choux de Bruxelles rôtis au parmesan et saucisses","🥬","viande","airfryer",30,"a","pdt","Choux de Bruxelles 600, Parmesan 40, Saucisses 6, Pommes de terre 600",
+ "Coupez les choux en deux et les pommes de terre en cubes, mélangez avec un filet d'huile.|Rôtissez 15 min à 200°C à l'Airfryer.|Ajoutez les saucisses et poursuivez 12 min.|Parsemez de parmesan avant de servir.","k|fr"],
+["salachourouge","Salade de chou rouge, pommes et noix, poulet grillé","🟣","volaille","poele",20,"a","pain","Chou rouge 1, Pommes 2, Noix 60, Blancs de poulet 400, Baguette 1, moutarde",
+ "Émincez très finement la moitié du chou rouge.|Coupez les pommes en bâtonnets, concassez les noix.|Mélangez avec une vinaigrette moutardée.|Servez avec le poulet grillé en lanières.","|fr"],
+["risottoasperges","Risotto aux asperges","🌱","vege","thermomix",35,"e","riz","Riz 320, Asperges 1, Oignons 1, Parmesan 50, Bouillon cube 2",
+ "Coupez les asperges en tronçons, gardez les pointes.|Faites revenir l'oignon 3 min, 120°C, vitesse 1, puis le riz 2 min, 120°C, sens inverse.|Ajoutez 900 ml d'eau, bouillon et tronçons : 17 min, 100°C, sens inverse, vitesse mijotage ; ajoutez les pointes à 5 min de la fin.|Incorporez le parmesan.","|ita"],
+["soupefeves","Soupe de petits pois et fèves à la menthe","🫛","vege","thermomix",25,"e","pain","Petits pois frais 400, Fèves 300, Oignons 1, Menthe 1, Fromage blanc 100, Bouillon cube 1, Baguette 1",
+ "Faites revenir l'oignon 3 min, 120°C, vitesse 1.|Ajoutez petits pois, fèves écossées, 800 ml d'eau et bouillon : 15 min, 100°C, vitesse 1.|Ajoutez la menthe et mixez 1 min vitesse 8.|Servez avec une cuillère de fromage blanc.","|fr"],
+["gratinceleri","Gratin de céleri-rave et pommes de terre","🥔","vege","four",60,"a","pdt","Céleri-rave 1, Pommes de terre 600, Lait 0.5, Crème fraîche 10, Gruyère râpé 80, Salade 1",
+ "Épluchez et coupez céleri et pommes de terre en fines rondelles.|Faites-les frémir 10 min dans le lait salé.|Versez dans un plat avec la crème, couvrez de gruyère.|Enfournez 40 min à 180°C.","r|fr"],
+["topinambours","Velouté de topinambours et noisettes","🥣","vege","thermomix",35,"a","pain","Topinambours 600, Pommes de terre 200, Oignons 1, Crème fraîche 10, Noisettes 30, Bouillon cube 1, Baguette 1",
+ "Épluchez et coupez topinambours et pomme de terre.|Faites revenir l'oignon 3 min, 120°C, vitesse 1.|Ajoutez légumes, 800 ml d'eau et bouillon : 25 min, 100°C, vitesse 1, puis la crème et mixez 1 min vitesse 8.|Servez avec des noisettes torréfiées.","r|fr"],
+["salademache","Salade de mâche, betterave, chèvre et noix","🥗","vege","poele",15,"a","pain","Mâche 200, Betteraves 3, Fromage de chèvre 1, Noix 50, Baguette 1",
+ "Coupez les betteraves cuites en dés.|Faites griller des tranches de baguette avec le chèvre dessus.|Mélangez mâche, betterave, noix et vinaigrette.|Posez les toasts de chèvre chauds sur la salade.","|fr"],
+["courgespaghetti","Courge spaghetti à la bolognaise","🎃","viande","four",60,"a","","Courge spaghetti 1, Bœuf haché 400, Tomates concassées 1, Oignons 1, Parmesan 40, herbes de Provence",
+ "Coupez la courge en deux, retirez les graines, enfournez 40 min à 200°C face coupée vers le bas.|Préparez une bolognaise : oignon, viande, tomates, herbes, 20 min de cuisson.|Grattez la chair de la courge à la fourchette : elle forme des spaghettis.|Servez avec la sauce et le parmesan.","k|ita"],
+["fenouilcabillaud","Cabillaud et fenouil braisé à l'orange","🐟","poisson","poele",30,"a","riz","Cabillaud 600, Fenouil 2, Oranges 0.5, Riz 250",
+ "Émincez les fenouils et faites-les braiser 15 min à couvert avec le jus d'une orange et un filet d'huile.|Faites cuire le riz.|Posez le poisson sur les fenouils, couvrez et cuisez 8 min.|Servez avec le riz.","|fr"],
+["kale","Poêlée de chou kale, patate douce et œufs","🥬","oeufs","poele",25,"a","pdt","Chou kale 200, Patates douces 2, Œufs 4, Oignons rouges 1, paprika",
+ "Coupez les patates douces en petits dés, faites-les dorer 12 min à la poêle avec l'oignon rouge.|Ajoutez le kale effeuillé et le paprika, 4 min.|Creusez 4 puits, cassez-y les œufs, couvrez 5 min.|Servez aussitôt.","|fr"],
+["tartetomatescerises","Tarte fine aux tomates cerises et chèvre","🍅","vege","four",35,"e","pain","Pâte feuilletée 1, Tomates cerises 400, Fromage de chèvre 1, Basilic 1, Salade 1, moutarde",
+ "Étalez la pâte sur une plaque, piquez-la, badigeonnez de moutarde.|Répartissez les tomates cerises coupées en deux et le chèvre.|Enfournez 25 min à 200°C.|Parsemez de basilic, servez avec une salade.","k|fr"],
+["poivronsfarcis","Poivrons farcis au riz et au thon","🫑","poisson","four",50,"e","riz","Poivrons 4, Riz 200, Thon en boîte 2, Tomates concassées 1, Mozzarella 1",
+ "Faites cuire le riz.|Coupez le chapeau des poivrons et videz-les.|Mélangez riz, thon, la moitié des tomates, farcissez les poivrons, ajoutez la mozzarella.|Rangez-les dans un plat avec le reste des tomates, enfournez 35 min à 180°C.","r|fr"],
+["melonjambon","Melon, jambon cru et salade de tomates","🍈","viande","poele",10,"e","pain","Melon 2, Jambon cru 8, Tomates 4, Mozzarella 1, Basilic 1, Baguette 1",
+ "Coupez le melon en tranches.|Coupez tomates et mozzarella en rondelles, ajoutez basilic et huile d'olive.|Disposez le jambon cru sur un plat.|Servez frais avec du pain : le dîner parfait des soirs chauds.","k|fr"],
+["lentillesradis","Salade de lentilles, radis et menthe","🫘","vege","poele",30,"e","leg","Lentilles 300, Radis 1, Concombre 1, Menthe 1, Feta 120, Citron 1",
+ "Faites cuire les lentilles 20 min, refroidissez-les.|Coupez radis et concombre en petits dés, ciselez la menthe.|Mélangez avec le jus de citron et l'huile d'olive.|Ajoutez la feta émiettée.","|fr"],
+["potaufeupoulet","Pot-au-feu de poulet aux légumes d'hiver","🍲","volaille","cocotte",75,"a","pdt","Cuisses de poulet 4, Carottes 400, Poireaux 2, Navets 2, Céleri-rave 1, Pommes de terre 600, Bouillon cube 1, thym",
+ "Mettez le poulet dans une grande cocotte avec 2 L d'eau, le bouillon et le thym, portez à frémissement.|Ajoutez carottes, poireaux, navets et céleri en morceaux, laissez cuire 40 min.|Ajoutez les pommes de terre et poursuivez 20 min.|Servez le bouillon puis la viande et les légumes.","r|fr"],
+["tartepoireaux","Tarte aux poireaux","🥧","oeufs","four",50,"a","pain","Pâte brisée 1, Poireaux 4, Œufs 3, Crème fraîche 20, Gruyère râpé 60, Salade 1",
+ "Émincez les poireaux et faites-les fondre 15 min à couvert.|Étalez la pâte, garnissez de poireaux.|Battez œufs, crème et gruyère, versez.|Enfournez 30 min à 190°C.","k|fr"],
+["pistou","Soupe au pistou","🌿","vege","thermomix",40,"e","pates","Courgettes 2, Haricots verts 200, Haricots blancs 1, Pommes de terre 300, Carottes 200, Pâtes 100, Basilic 1, Ail 2, Parmesan 40",
+ "Coupez tous les légumes en petits dés.|Mettez-les dans le bol avec 1,2 L d'eau salée : 20 min, 100°C, sens inverse, vitesse cuillère.|Ajoutez pâtes et haricots blancs : 10 min de plus.|Mixez basilic, ail, parmesan et 4 c. à soupe d'huile d'olive pour le pistou, ajoutez-en dans chaque bol.","r|fr"],
+["saladequinoa","Salade de quinoa, avocat, mangue et crevettes","🥭","poisson","poele",20,"e","quinoa","Quinoa 250, Avocats 2, Mangue 1, Crevettes 300, Citron vert 2, Coriandre 1",
+ "Faites cuire le quinoa et laissez-le refroidir.|Coupez avocat et mangue en dés.|Mélangez avec les crevettes, la coriandre, le jus des citrons verts et un filet d'huile.|Servez bien frais.","|monde"],
+["wokchou","Wok de poulet au chou chinois","🥢","volaille","poele",20,"t","riz","Blancs de poulet 500, Chou chinois 1, Carottes 200, Riz 300, Gingembre 15, sauce soja",
+ "Faites cuire le riz.|Émincez le chou chinois, râpez les carottes, coupez le poulet en lanières.|Saisissez le poulet au wok avec le gingembre 4 min, ajoutez les légumes 4 min.|Ajoutez la sauce soja et servez.","|asie"],
+["boeufbrocoli","Bœuf aux brocolis","🥦","viande","poele",25,"t","riz","Émincé de bœuf 500, Brocoli 1, Ail 2, Gingembre 15, Riz 300, sauce soja",
+ "Faites cuire le riz et le brocoli en petits bouquets 4 min.|Saisissez le bœuf à feu très vif 2 min, réservez.|Faites revenir ail et gingembre, ajoutez le brocoli et la viande.|Ajoutez 4 c. à soupe de sauce soja, mélangez 1 min.","|asie"],
+["galettessaumon","Galettes de sarrasin poireaux et saumon fumé","🥞","poisson","poele",25,"a","pain","Galettes de sarrasin 1, Poireaux 3, Saumon fumé 150, Crème fraîche 15, Salade 1",
+ "Émincez les poireaux et faites-les fondre 12 min, ajoutez la crème.|Chauffez une galette, garnissez de fondue de poireaux et de saumon.|Repliez les bords et laissez dorer 2 min.|Servez avec une salade.","|fr"],
+["gratinpotimarron","Gratin de potimarron et pommes de terre","🎃","vege","four",50,"a","pdt","Potimarron 1, Pommes de terre 500, Crème fraîche 20, Gruyère râpé 80, Salade 1",
+ "Coupez potimarron et pommes de terre en fines tranches (la peau du potimarron se mange).|Alternez-les dans un plat, salez, poivrez, versez la crème.|Couvrez de gruyère.|Enfournez 40 min à 190°C.","k,r|fr"],
+["choufarci","Chou farci","🥬","viande","cocotte",90,"a","pdt","Chou 1, Bœuf haché 400, Riz 100, Oignons 1, Carottes 200, Tomates concassées 1, Pommes de terre 600",
+ "Blanchissez les grandes feuilles de chou 5 min.|Mélangez viande, riz cru, oignon haché, sel et poivre, formez des boules enveloppées de feuilles.|Rangez-les dans une cocotte avec carottes, tomates et un verre d'eau.|Laissez mijoter 1 h à couvert. Servez avec des pommes de terre vapeur.","r|fr"],
+["poireauxvinaigrette","Poireaux vinaigrette et œufs mimosa","🥬","oeufs","cocotte",30,"a","pain","Poireaux 6, Œufs 6, Baguette 1, moutarde",
+ "Faites cuire les poireaux entiers 20 min à la vapeur, laissez-les tiédir.|Cuisez les œufs 10 min, écalez-les, émiettez les jaunes.|Nappez les poireaux d'une vinaigrette moutardée.|Parsemez des œufs émiettés et servez avec du pain.","|fr"],
+["salademelon","Salade de pastèque, feta et menthe","🍉","vege","poele",10,"e","pain","Pastèque 1, Feta 200, Menthe 1, Concombre 1, Citron vert 1, Baguette 1",
+ "Coupez la pastèque et le concombre en dés.|Ajoutez la feta en cubes et la menthe ciselée.|Arrosez de jus de citron vert et d'huile d'olive.|Servez très frais avec du pain.","|monde"]
+);
+
 const DISH=["🍝","🍲","🥘","🍛","🍜","🍕","🥗","🐟","🍗","🥩","🍳","🥧","🌮","🌯","🥙","🍔","🍖","🥞","🍤","🦪","🥟","🫕","🍱","🥪","🌭","🍚","🎃","🥕"];
 const TYPES={vege:["Végé","🥦"],oeufs:["Œufs","🥚"],poisson:["Poisson","🐟"],volaille:["Volaille","🍗"],viande:["Viande","🥩"]};
 const APPS={thermomix:["Thermomix","🌀","tm"],airfryer:["Airfryer","💨","af"],four:["Four","🔥",""],poele:["Poêle","🍳",""],cocotte:["Cocotte","🍲",""]};
@@ -798,11 +914,19 @@ const LIB=LIB_RAW.map(([id,nom,icone,type,app,min,saison,fec,ings,steps])=>({id:
 
 const TREE=[
  {id:"fl",n:"Fruits & légumes",e:"🥕",subs:[
-  {n:"Racines",e:"🥕",items:["Carottes","Pommes de terre","Patates douces","Oignons","Échalotes","Ail","Betteraves","Navets","Panais","Radis"]},
-  {n:"Verts & choux",e:"🥦",items:["Salade","Épinards","Poireaux","Brocoli","Chou","Chou-fleur","Haricots verts","Endives","Céleri","Fenouil"]},
-  {n:"Légumes du soleil",e:"🍅",items:["Tomates","Courgettes","Aubergine","Poivrons","Concombre","Avocats","Courge","Champignons"]},
-  {n:"Herbes & citron",e:"🌿",items:["Persil","Coriandre","Basilic","Gingembre","Citron"]},
-  {n:"Fruits",e:"🍎",items:["Pommes","Poires","Bananes","Clémentines","Kiwis","Raisin","Fraises","Châtaignes"]}]},
+  {n:"Racines",e:"🥕",items:["Carottes","Pommes de terre","Patates douces","Betteraves","Navets","Panais","Radis","Radis noir","Céleri-rave","Rutabaga","Topinambours","Salsifis"]},
+  {n:"Oignons & poireaux",e:"🧅",items:["Oignons","Oignons rouges","Échalotes","Ail","Poireaux","Gingembre"]},
+  {n:"Salades & feuilles",e:"🥗",items:["Salade","Laitue","Mâche","Roquette","Frisée","Scarole","Mesclun","Cresson","Épinards","Blettes","Endives"]},
+  {n:"Choux",e:"🥦",items:["Chou","Chou blanc","Chou rouge","Chou kale","Choux de Bruxelles","Chou-fleur","Brocoli","Chou romanesco","Chou chinois","Chou-rave"]},
+  {n:"Légumes du soleil",e:"🍅",items:["Tomates","Tomates cerises","Courgettes","Aubergine","Poivrons","Piment","Concombre","Cornichons","Avocats","Maïs doux"]},
+  {n:"Courges & champignons",e:"🎃",items:["Courge","Potimarron","Butternut","Potiron","Courge spaghetti","Champignons","Champignons de Paris","Pleurotes","Cèpes","Girolles"]},
+  {n:"Haricots, asperges & co",e:"🌱",items:["Haricots verts","Haricots beurre","Petits pois frais","Fèves","Artichauts","Asperges","Fenouil","Céleri","Rhubarbe"]},
+  {n:"Herbes",e:"🌿",items:["Persil","Coriandre","Basilic","Ciboulette","Menthe","Aneth","Estragon","Cerfeuil","Romarin","Thym frais","Citronnelle"]},
+  {n:"Pommes, poires & agrumes",e:"🍎",fruit:true,items:["Pommes","Poires","Coings","Clémentines","Mandarines","Oranges","Pamplemousses","Citron","Citron vert","Kakis"]},
+  {n:"Fruits rouges",e:"🍓",fruit:true,items:["Fraises","Framboises","Myrtilles","Groseilles","Cassis","Mûres","Cerises"]},
+  {n:"Fruits d'été",e:"🍑",fruit:true,items:["Abricots","Pêches","Nectarines","Prunes","Mirabelles","Reines-claudes","Melon","Pastèque","Figues","Raisin"]},
+  {n:"Fruits exotiques",e:"🍍",fruit:true,items:["Bananes","Kiwis","Ananas","Mangue","Papaye","Fruits de la passion","Litchis","Grenade"]},
+  {n:"Fruits secs & à coque",e:"🌰",fruit:true,items:["Noix","Noisettes","Amandes","Châtaignes","Dattes"]}]},
  {id:"vp",n:"Viande & poisson",e:"🥩",subs:[
   {n:"Volaille",e:"🍗",items:["Blancs de poulet","Cuisses de poulet","Poulet entier","Escalopes de dinde","Magret de canard"]},
   {n:"Bœuf & porc",e:"🥩",items:["Bœuf haché","Steaks hachés","Émincé de bœuf","Bœuf à braiser","Échine de porc","Filet mignon de porc"]},
@@ -830,9 +954,11 @@ const TREE=[
   {n:"Pâtes à tarte",e:"🥧",items:["Pâte brisée","Pâte feuilletée","Pâte à pizza"]},
   {n:"Surgelés",e:"🧊",items:["Petits pois surgelés","Légumes surgelés","Frites surgelées","Glace"]}]},
  {id:"ma",n:"Maison & hygiène",e:"🧴",subs:[
-  {n:"Papier",e:"🧻",items:["Papier toilette","Essuie-tout","Mouchoirs"]},
-  {n:"Cuisine & ménage",e:"🧽",items:["Liquide vaisselle","Pastilles lave-vaisselle","Éponges","Sacs poubelle","Lessive","Film alimentaire","Papier cuisson"]},
-  {n:"Salle de bain",e:"🧼",items:["Savon","Gel douche","Shampoing","Dentifrice","Coton"]}]}
+  {n:"Papier",e:"🧻",items:["Papier toilette","Essuie-tout","Mouchoirs","Lingettes"]},
+  {n:"Ménage & linge",e:"🧽",items:["Liquide vaisselle","Pastilles lave-vaisselle","Éponges","Sacs poubelle","Produit ménager","Produit WC","Lessive","Adoucissant"]},
+  {n:"Hygiène",e:"🧼",items:["Savon","Gel douche","Shampoing","Déodorant","Dentifrice","Brosses à dents","Rasoirs","Coton"]},
+  {n:"Soins & bébé",e:"🩹",items:["Serviettes hygiéniques","Tampons","Crème hydratante","Crème solaire","Pansements","Couches"]},
+  {n:"Bazar",e:"🔋",items:["Piles","Ampoules","Film alimentaire","Papier cuisson"]}]}
 ];
 const TOPOF=new Map();TREE.forEach(t=>t.subs.forEach(s=>s.items.forEach(n=>{if(!TOPOF.has(key(n)))TOPOF.set(key(n),t.id)})));
 const RTOP=["fl","vp","fr","es","bs","bs","ma","bo","autre"];
@@ -859,7 +985,8 @@ function panDefault(n){const c=catFor(n);if(!c)return null;if(c.u==="g")return 5
 // ================= Coûts & correspondances =================
 function cost(q,u,p){if(q==null||p==null)return 0;if(u==="g")return q/1000*p;if(u==="cl")return q/100*p;return q*p}
 const isCat=k=>CATK.has(k);
-function inList(name,list){const k=key(name);return list.some(p=>{const pk=key(p);if(!pk)return false;if(k===pk)return true;
+const CANON=new Map();Object.entries(SYN).forEach(([c,l])=>l.forEach(n=>CANON.set(key(n),key(c))));
+function inList(name,list){const k=key(name),ck=CANON.get(k)||k;return list.some(p=>{const pk=key(p);if(!pk)return false;if(k===pk||(CANON.get(pk)||pk)===ck)return true;
   if(k.startsWith(pk+"-")&&!isCat(k))return true;if(pk.startsWith(k+"-")&&!isCat(pk))return true;return false})}
 function recipeCost(r){return (r.ingredients||[]).reduce((s,i)=>{const c=catFor(i.n);if(!c||inList(i.n,F().placard))return s;return s+cost(i.q,c.u,c.p)},0)}
 const perPers=r=>recipeCost(r)/(r.portions||4);
@@ -1117,7 +1244,7 @@ const CLE = "CHANGEZ-MOI";
 
 const SYNC = (()=>{
   const LS="menus-du-foyer-etat";
-  let etat={semaine:null,foyer:null,recettes:{},manque:{},maj:0},pending=0,queue=Promise.resolve(),lastOk=0,online=true;
+  let lastWrite=0,etat={semaine:null,foyer:null,recettes:{},manque:{},maj:0},pending=0,queue=Promise.resolve(),lastOk=0,online=true;
   const docL={semaine:[],foyer:[]},colL={recettes:[],manque:[]};
   try{const c=JSON.parse(localStorage.getItem(LS)||"null");if(c)etat=Object.assign(etat,c)}catch(_){}
   const configured=/^https:\/\/script\.google(usercontent)?\.com\//.test(API_URL);
@@ -1128,9 +1255,10 @@ const SYNC = (()=>{
   function apply(e){if(e&&typeof e==="object"){etat=Object.assign({semaine:null,foyer:null,recettes:{},manque:{}},e);save()}}
   async function pull(){
     if(!configured||pending)return;
+    const t0=Date.now();
     try{const r=await fetch(API_URL+"?cle="+encodeURIComponent(CLE)+"&t="+Date.now());const j=await r.json();
       if(j.erreur==="cle"){status("Mot de passe refusé par le serveur : vérifiez que CLE est le même dans index.html et dans Code.gs.");return}
-      if(j.ok&&!pending&&(j.etat.maj||0)!==(etat.maj||0)){apply(j.etat);emit()}
+      if(j.ok&&!pending&&t0>lastWrite&&(j.etat.maj||0)!==(etat.maj||0)){apply(j.etat);emit()}
       online=true;lastOk=Date.now();syncBadge()}
     catch(_){online=false;syncBadge()}
   }
@@ -1140,7 +1268,7 @@ const SYNC = (()=>{
       for(let essai=0;essai<3;essai++){
         try{const r=await fetch(API_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({cle:CLE,...body})});
           const j=await r.json();if(j.erreur)throw new Error(j.erreur);
-          pending--;if(!pending){apply(j.etat);emit()}online=true;lastOk=Date.now();syncBadge();return}
+          lastWrite=Date.now();pending--;if(!pending){apply(j.etat);emit()}online=true;lastOk=Date.now();syncBadge();return}
         catch(err){if(err.message==="cle"){pending--;status("Mot de passe refusé par le serveur.");syncBadge();return}await new Promise(r=>setTimeout(r,1500*(essai+1)))}
       }
       pending--;online=false;syncBadge();status("Pas de connexion : la dernière modification n'a pas pu être enregistrée. Réessayez dans un instant.");
@@ -1177,7 +1305,8 @@ const SYNC = (()=>{
 function pickBanner(){if(!pickFor)return"";const x=slots().find(s=>s.k===pickFor);return x?`<div class="pickban"><span>📅 Choisissez un plat pour ${JOURS[x.i].toLowerCase()} ${x.label==="Midi"?"midi":"soir"}</span><button class="ghost" id="cancelPick">Annuler</button></div>`:""}
 
 // ================= Le rituel du jeudi =================
-let view="semaine",panSub=0,pickFor=null,pick={lvl:0,top:null,sub:null,mode:"ajout"},cmdIdx=0,lastCopied=null;
+let doneLock=0;
+let view="semaine",panSub=0,panGrp="leg",pickFor=null,pick={lvl:0,top:null,sub:null,mode:"ajout"},cmdIdx=0,lastCopied=null;
 const VIEWS=["semaine","panier","menus","liste","commande","recettes","foyer"];
 const NAVOF={semaine:"semaine",panier:"semaine",menus:"semaine",liste:"liste",commande:"liste",recettes:"recettes",foyer:"semaine"};
 const searchTerm=n=>String(n).replace(/\s*\(.*?\)\s*/g," ").trim().toLowerCase();
@@ -1240,7 +1369,8 @@ function vHome(s,L){
 
 // ---------- Étape 1 : panier ----------
 function vPanier(s,L){
-  const subs=TREE[0].subs,sub=subs[panSub]||subs[0],pan=panier();
+  const allS=TREE[0].subs.map((x,i)=>({...x,i})),subs=allS.filter(x=>!!x.fruit===(panGrp==="fruit")),sub=allS[panSub]&&!!allS[panSub].fruit===(panGrp==="fruit")?allS[panSub]:subs[0],pan=panier();
+  const inGrp=g=>pan.filter(p=>allS.some(x=>!!x.fruit===g&&x.items.some(it=>key(it)===key(p.n)))).length;
   const tile=n=>{const c=catFor(n),p=pan.find(x=>key(x.n)===key(n)),u=L.use[key(n)];
     if(!p)return `<div class="pt"><button class="main" data-pan="${esc(n)}"><span class="emo">${c?c.e:"🧺"}</span>${esc(n)}</button></div>`;
     const ratio=p.q&&u?Math.min(1,u.besoin/p.q):0;
@@ -1253,8 +1383,9 @@ function vPanier(s,L){
       <span class="stepper" title="Œufs du panier"><button data-step="oeufs:-1" aria-label="Moins d'œufs">−</button><b>🥚 ${s.oeufsPanier}</b><button data-step="oeufs:1" aria-label="Plus d'œufs">+</button></span></div>
     ${pan.length?`<div class="recu">${pan.map(p=>`<span class="chip pb"><span class="emo">${emojiFor(p.n)}</span>${esc(p.n)}${p.q!=null?" · "+esc(fmtQ(p.q,catFor(p.n)?.u)):""}</span>`).join("")}</div>`:""}
   </section>
-  <div class="subtabs">${subs.map((x,i)=>{const n=pan.filter(p=>x.items.some(it=>key(it)===key(p.n))).length;return `<button aria-pressed="${i===panSub}" data-psub="${i}"><span class="emo">${x.e}</span>${x.n}${n?` <b>${n}</b>`:""}</button>`}).join("")}</div>
-  <div class="ptiles">${sub.items.map(tile).join("")}${panSub===0?`<div class="pt add"><button class="main" id="panOther"><span class="emo">+</span>Autre</button></div>`:""}</div>
+  <div class="seg2"><button aria-pressed="${panGrp==="leg"}" data-pgrp="leg">🥕 Légumes${inGrp(false)?` <b>${inGrp(false)}</b>`:""}</button><button aria-pressed="${panGrp==="fruit"}" data-pgrp="fruit">🍎 Fruits${inGrp(true)?` <b>${inGrp(true)}</b>`:""}</button></div>
+  <div class="subtabs">${subs.map(x=>{const i=x.i,n=pan.filter(p=>x.items.some(it=>key(it)===key(p.n))).length;return `<button aria-pressed="${i===sub.i}" data-psub="${i}"><span class="emo">${x.e}</span>${x.n}${n?` <b>${n}</b>`:""}</button>`}).join("")}</div>
+  <div class="ptiles">${sub.items.map(tile).join("")}<div class="pt add"><button class="main" id="panOther"><span class="emo">+</span>Autre</button></div></div>
   <div class="ctabar"><button class="ghost" id="noPanier">Pas de panier cette semaine</button><button class="primary big" id="panierOk">Suivant : les menus ›</button></div>`;
 }
 
@@ -1293,23 +1424,47 @@ function sheetDay(k){
 
 // ---------- Étape 3 : liste ----------
 function stepOf(u){return u==="g"?100:u==="cl"?10:(u==="kg"||u==="l")?.5:1}
+// ---------- Étape 3 : liste en vignettes ----------
+const prefOf=id=>(F().prefs||{})[id]||{};
+const KIND=i=>i.manuel?["📝","ajouté"]:i.why.startsWith("pour ")?["🍽️","menus"]:["⭐","chaque semaine"];
+function picOf(id,n,cls=""){const p=prefOf(id);return p.photo?`<img class="${cls}" src="${p.photo}" alt="${esc(n)}">`:`<span class="emo ${cls}">${emojiFor(n)}</span>`}
 function vListe(s,L){
   const groups=TOPS.map(([id,n,e])=>({id,n,e,it:L.items.filter(i=>i.top===id)})).filter(g=>g.it.length);
+  const nb=k=>L.items.filter(i=>KIND(i)[1]===k).length;
   return `
   <section class="card listhead">
-    <div><h2 style="font-size:20px">${L.items.length?`${L.items.length} articles à acheter`:"La liste est vide"}</h2>
-      <p class="hint">${L.items.length?`Environ ${eur(L.total)} · budget ${F().budget} €`:"Choisissez les menus : les ingrédients arrivent ici tout seuls."}</p></div>
+    <div class="row spread" style="align-items:flex-start"><div><h2 style="font-size:20px">${L.items.length?`${L.items.length} articles à acheter`:"La liste est vide"}</h2>
+      <p class="hint">${L.items.length?`Environ ${eur(L.total)} · budget ${F().budget} €`:"Choisissez les menus : les ingrédients arrivent ici tout seuls."}</p></div></div>
+    ${L.items.length?`<div class="legend"><span>🍽️ ${nb("menus")} pour les menus</span><span>⭐ ${nb("chaque semaine")} essentiels</span><span>📝 ${nb("ajouté")} ajoutés</span></div>`:""}
     <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
       <button class="sun big2" id="addProd">➕ Ajouter</button><button class="primary big2" data-go="commande" ${L.items.length?"":"disabled"}>🛒 Commander</button></div>
   </section>
-  ${groups.map(g=>`<section class="rayon"><h3><span class="emo">${g.e}</span>${g.n}<small>${g.it.length}</small></h3>${g.it.map(i=>`
-    <div class="item ${s.coches[i.id]?"done":""}"><span class="ib">${emojiFor(i.n)}</span>
-      <div class="n">${esc(i.n)}<span class="src">${esc(i.why.length>46?i.why.slice(0,43)+"…":i.why)}${i.note?" · "+esc(i.note):""}</span></div>
-      <span class="stepper"><button data-q="${esc(i.id)}:-1:${esc(i.u||"")}:${i.q??1}" aria-label="Moins de ${esc(i.n)}">−</button><b>${esc(fmtQ(i.q??1,i.u))}</b><button data-q="${esc(i.id)}:1:${esc(i.u||"")}:${i.q??1}" aria-label="Plus de ${esc(i.n)}">+</button></span></div>`).join("")}</section>`).join("")}
+  ${groups.map(g=>`<section class="lsec"><h3><span class="emo">${g.e}</span>${g.n}<small>${g.it.length}</small></h3>
+    <div class="lgrid">${g.it.map(i=>{const p=prefOf(i.id),k=KIND(i);return `<button class="lcard ${s.coches[i.id]?"done":""}" data-item="${esc(i.id)}">
+      <span class="lpic">${picOf(i.id,i.n)}</span><span class="lq">${esc(fmtQ(i.q??1,i.u))}</span><span class="lk" title="${k[1]}">${k[0]}</span>
+      <span class="ln">${esc(i.n)}</span>${p.note?`<span class="lnote">${esc(p.note)}</span>`:""}</button>`}).join("")}</div></section>`).join("")}
   ${L.retires.length?`<p class="hint">Retirés : ${esc(L.retires.map(r=>r.n).join(", "))} · <button class="ghost link" id="restore">Remettre</button></p>`:""}
   ${L.skip.length?`<p class="hint">🏡 Déjà à la maison (panier bio ou placard) : ${esc([...new Set(L.skip.map(x=>x.toLowerCase()))].join(", "))}</p>`:""}
-  ${L.items.length?`<div class="ctabar"><span></span><button class="primary big" id="listeOk">La liste est prête ›</button></div>`:""}`;
+  ${L.items.length?`<div class="ctabar"><span class="hint">Touchez un article pour changer la quantité, ajouter une précision ou une photo.</span><button class="primary big" id="listeOk">La liste est prête ›</button></div>`:""}`;
 }
+function sheetItem(id,fresh){
+  const it=liste().items.find(i=>i.id===id);if(!it){closeSheet();return}
+  const p=prefOf(id),k=KIND(it);
+  openSheet(`<div class="row spread"><span class="lab">${k[0]} ${esc(it.why)}</span><button class="ghost" data-close aria-label="Fermer">✕</button></div>
+  ${fresh?`<p class="okline" style="text-align:left">✓ ${esc(it.n)} est sur la liste.</p>`:""}
+  <div class="ihero">${picOf(id,it.n)}</div>
+  <h2 class="big" style="text-align:center">${esc(it.n)}</h2>
+  <div class="row spread"><b>Quantité</b><span class="stepper bigstep"><button data-q="${esc(id)}:-1:${esc(it.u||"")}:${it.q??1}" aria-label="Moins">−</button><b>${esc(fmtQ(it.q??1,it.u))}</b><button data-q="${esc(id)}:1:${esc(it.u||"")}:${it.q??1}" aria-label="Plus">+</button></span></div>
+  <label class="f">Précision pour la commande (facultatif)<input id="iNote" data-note="${esc(id)}" value="${esc(p.note||"")}" placeholder="Marque, taille, parfum… ex. Rexona Men 48h"></label>
+  <div class="row"><label class="btn soft photo">📷 ${p.photo?"Changer la photo":"Ajouter une photo du produit"}<input type="file" accept="image/*" data-photo="${esc(id)}" hidden></label>
+    ${p.photo?`<button class="ghost" data-nophoto="${esc(id)}">Retirer la photo</button>`:""}</div>
+  <p class="hint">La photo et la précision sont gardées pour les prochaines fois et s'affichent au moment de commander.</p>
+  <div class="row spread"><button class="ghost" data-rm="${esc(id)}" style="color:var(--tomato)">🗑️ Retirer de la liste</button><button class="primary" data-close>Terminé</button></div>`);
+}
+function savePref(id,patch){const prefs={...(F().prefs||{})};prefs[id]={...(prefs[id]||{}),...patch};Object.keys(prefs[id]).forEach(k=>{if(prefs[id][k]==null||prefs[id][k]==="")delete prefs[id][k]});if(!Object.keys(prefs[id]).length)delete prefs[id];return saveFoyer({prefs})}
+function compress(file){return new Promise((res,rej)=>{const fr=new FileReader();fr.onerror=rej;fr.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{
+  const m=420,sc=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);
+  c.getContext("2d").drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",.72))};im.src=fr.result};fr.readAsDataURL(file)})}
 
 // ---------- Ajouter un produit : catégorie → sous-catégorie → produit ----------
 function sheetAdd(mode){pick={lvl:0,top:null,sub:null,mode:mode||"ajout",q:""};drawAdd()}
@@ -1337,6 +1492,7 @@ async function addProduct(n,free){
   try{if(ex)await db.doc("manque/"+ex.id).update({q:(ex.q||0)+step});else await db.collection("manque").add({n:name,q:step,u:c?c.u:"",ajoute:new Date().toISOString()});
     const s=S(),qte={...(s.qte||{})},co={...s.coches};let ch=false;if(k in qte){delete qte[k];ch=true}if(co[k]){delete co[k];ch=true}if(ch)saveSemaine({qte,coches:co});
     toast(`✓ ${name} ajouté`)}catch(e){denied(e)}
+  return k;
 }
 
 // ---------- Étape 4 : commande ----------
@@ -1346,12 +1502,12 @@ function vCommande(s,L){
   if(!left.length)return `${back}<section class="card finish"><span class="emo">🎉</span><h2>Commande passée !</h2><p class="hint">Il ne reste qu'à valider le panier sur le site du drive.</p>
     <div class="rdv"><span class="emo">🚗</span><div><b>${esc(retraitTxt())}</b><small>Retrait des courses</small></div></div>
     <button class="primary big" id="commandeOk">C'est fait</button><button class="ghost" id="uncheck">Tout recommencer</button></section>`;
-  if(cmdIdx>=left.length)cmdIdx=0;const it=left[cmdIdx],term=searchTerm(it.n);
+  if(cmdIdx>=left.length)cmdIdx=0;const it=left[cmdIdx],pp=prefOf(it.id),term=pp.note||searchTerm(it.n);
   return `${back}
   <section class="card cmd">
     <div class="row spread"><span class="lab">Article ${done+1} sur ${tot}</span><span class="hint">${esc(TOPS.find(t=>t[0]===it.top)?.[1]||"")}</span></div>
     <div class="progress"><i style="width:${Math.round(done/tot*100)}%"></i></div>
-    <div class="cmdcard"><span class="bigemo emo">${emojiFor(it.n)}</span><h2>${esc(it.n)}</h2><p class="qbig">${esc(fmtQ(it.q??1,it.u))}</p></div>
+    <div class="cmdcard"><span class="bigemo">${picOf(it.id,it.n)}</span><h2>${esc(it.n)}</h2><p class="qbig">${esc(fmtQ(it.q??1,it.u))}</p>${pp.note?`<p class="cnote">👉 ${esc(pp.note)}</p>`:""}</div>
     <button class="soft big ${lastCopied===it.id?"copied":""}" data-copy="${esc(it.id)}" data-term="${esc(term)}">${lastCopied===it.id?"✓ Copié, collez-le dans le drive":`📋 Copier « ${esc(term)} »`}</button>
     <button class="primary big" data-done="${esc(it.id)}">✓ Commandé, suivant</button>
     <button class="ghost" id="skipItem">Passer pour l'instant</button>
@@ -1391,6 +1547,7 @@ document.addEventListener("click",async e=>{
   if(d.go){e.preventDefault();go(d.go);return}
   // panier
   if(d.psub!=null){panSub=+d.psub;render();return}
+  if(d.pgrp){panGrp=d.pgrp;panSub=TREE[0].subs.findIndex(x=>!!x.fruit===(panGrp==="fruit"));render();return}
   if(d.pan!=null){const k=key(d.pan),p=panier(),ix=p.findIndex(x=>key(x.n)===k);if(ix>=0)p.splice(ix,1);else p.push({n:d.pan,q:panDefault(d.pan)});saveSemaine({panier:p});return}
   if(d.panq){const[n,dl]=d.panq.split(":");const p=panier(),it=p.find(x=>key(x.n)===key(n));if(!it)return;it.q=Math.round(((it.q||0)+(+dl)*panStep(n))*10)/10;if(it.q<=0)p.splice(p.indexOf(it),1);saveSemaine({panier:p});return}
   if(t.id==="panOther"){openSheet(`<div class="row spread"><h2>Autre produit du panier</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div><div class="row" style="flex-wrap:nowrap"><input id="panIn" placeholder="ex. topinambours"><button class="primary" id="panAdd">Ajouter</button></div>`);setTimeout(()=>$("#panIn")?.focus(),50);return}
@@ -1414,14 +1571,17 @@ document.addEventListener("click",async e=>{
   if(d.top!=null){pick.top=+d.top;pick.lvl=1;drawAdd();return}
   if(d.sub!=null){pick.sub=+d.sub;pick.lvl=2;drawAdd();return}
   if(d.lvl!=null){if(d.lvl==="0"){pick.top=null;pick.sub=null}else pick.sub=null;drawAdd();return}
-  if(d.addp){await addProduct(d.addp,!!d.free);if(d.free){pick.q=""}drawAdd();return}
+  if(d.addp){const k=await addProduct(d.addp,!!d.free);if(d.free&&pick.mode!=="ess"){pick.q="";sheetItem(k,true);return}drawAdd();return}
   if(d.q){const[id,dl,u,cur]=d.q.split(":");const qte={...(s.qte||{})};let v=Math.round(((+cur)+(+dl)*stepOf(u))*100)/100;if(v<0)v=0;qte[id]=v;
-    if(v<=0){const m=manque.find(x=>key(x.n)===id);if(m&&db)db.doc("manque/"+m.id).delete().catch(()=>{})}saveSemaine({qte});if(v<=0)toast("Retiré de la liste");return}
+    if(v<=0){const m=manque.find(x=>key(x.n)===id);if(m&&db)db.doc("manque/"+m.id).delete().catch(()=>{})}saveSemaine({qte});if(v<=0){toast("Retiré de la liste");if($("#sheet").open&&$("#iNote"))closeSheet()}else if($("#sheet").open&&$("#iNote"))sheetItem(id);return}
   if(t.id==="restore"){const qte={...(s.qte||{})};Object.keys(qte).forEach(k=>{if(qte[k]<=0)delete qte[k]});saveSemaine({qte});return}
   if(t.id==="listeOk"){await saveSemaine({listeOk:true});go("commande");return}
   // commande
   if(d.copy){try{await navigator.clipboard.writeText(d.term);lastCopied=d.copy;toast(`« ${d.term} » copié`)}catch(_){toast("Copie impossible : le mot à chercher est « "+d.term+" »")}render();return}
-  if(d.done){lastCopied=null;await saveSemaine({coches:{...s.coches,[d.done]:true}});return}
+  if(d.done){if(Date.now()-doneLock<700)return;doneLock=Date.now();lastCopied=null;cmdIdx=Math.min(cmdIdx,999);saveSemaine({coches:{...s.coches,[d.done]:true}});window.scrollTo(0,0);return}
+  if(d.item){sheetItem(d.item);return}
+  if(d.rm){const qte={...(s.qte||{}),[d.rm]:0};const m=manque.find(x=>key(x.n)===d.rm);if(m&&db)db.doc("manque/"+m.id).delete().catch(()=>{});closeSheet();saveSemaine({qte});toast("Retiré de la liste");return}
+  if(d.nophoto){await savePref(d.nophoto,{photo:null});sheetItem(d.nophoto);return}
   if(t.id==="skipItem"){cmdIdx++;lastCopied=null;render();return}
   if(t.id==="commandeOk"){await saveSemaine({commandeOk:true,listeOk:true});go("semaine");toast("Bravo ! Retrait "+retraitTxt().toLowerCase());return}
   if(t.id==="uncheck"){saveSemaine({coches:{},commandeOk:false});return}
@@ -1455,7 +1615,10 @@ document.addEventListener("click",async e=>{
   if(t.id==="savePlac"){saveFoyer({placard:$("#sPlac").value.split(",").map(x=>x.trim()).filter(Boolean)},"Placard enregistré");return}
   if(t.id==="saveRetrait"){saveFoyer({retrait:$("#sRetrait").value.trim()||"Vendredi 16h00 · Drive de Salon"},"Enregistré");return}
 });
-document.addEventListener("change",e=>{const id=e.target.dataset?.chk2;if(id==null)return;const c={...S().coches};if(e.target.checked)c[id]=true;else delete c[id];saveSemaine({coches:c})});
+document.addEventListener("change",async e=>{const t=e.target;
+  if(t.dataset?.note!=null){savePref(t.dataset.note,{note:t.value.trim()});toast("Précision enregistrée");return}
+  if(t.dataset?.photo!=null&&t.files&&t.files[0]){const id=t.dataset.photo;toast("Photo en cours…");try{const url=await compress(t.files[0]);await savePref(id,{photo:url});toast("Photo enregistrée 📷");sheetItem(id)}catch(_){toast("Impossible de lire cette photo")}return}
+  const id=t.dataset?.chk2;if(id==null)return;const c={...S().coches};if(e.target.checked)c[id]=true;else delete c[id];saveSemaine({coches:c})});
 document.addEventListener("input",e=>{const t=e.target,d=t.dataset;
   if(t.id==="libSearch"){recherche=t.value;render()}
   if(t.id==="addSearch"){pick.q=t.value;pick.focus=true;drawAdd()}
@@ -1463,7 +1626,7 @@ document.addEventListener("input",e=>{const t=e.target,d=t.dataset;
   if(d.iq!=null)draft.ingredients[+d.iq].q=t.value===""?null:+t.value});
 document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const t=e.target,v=t.value?.trim();
   if(t.id==="panIn"){e.preventDefault();$("#panAdd").click()}
-  if(t.id==="addSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n)===norm(v))||CAT.find(c=>norm(c.n).includes(norm(v)));addProduct(c?c.n:v,!c).then(()=>{pick.q="";pick.focus=true;drawAdd()})}
+  if(t.id==="addSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n)===norm(v))||CAT.find(c=>norm(c.n).includes(norm(v)));addProduct(c?c.n:v,!c).then(k=>{pick.q="";if(!c&&pick.mode!=="ess"){sheetItem(k,true);return}pick.focus=true;drawAdd()})}
   if(t.id==="rSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n).includes(norm(v)));toggleIng(c?c.n:v);t.value="";drawCat("")}});
 $("#sheet").addEventListener("close",()=>{if(view==="liste"||view==="foyer")render()});
 
