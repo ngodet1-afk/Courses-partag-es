@@ -14,7 +14,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;700;800&display=swap">
 <style>
-html{-webkit-text-size-adjust:100%;background:var(--olive-deep)}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
 body{margin:0}
 img{max-width:100%}
 :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:0}
@@ -321,19 +321,120 @@ dialog::backdrop{background:rgba(15,22,10,.5);backdrop-filter:blur(2px)}
   .ptiles{grid-template-columns:repeat(3,1fr)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}button:active{transform:none}}
+
+/* ===== Rituel du jeudi ===== */
+.gear{font-family:var(--emoji);font-size:20px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14);text-decoration:none;flex:none}
+.back{padding:4px 0;color:var(--olive);justify-self:start}
+.big{width:100%;padding:16px;font-size:16px;border-radius:18px}
+.big2{padding:14px 10px;font-size:15px;border-radius:16px}
+.ritual{display:grid;gap:12px}
+.steps2{list-style:none;margin:0;padding:0;display:grid;gap:6px;position:relative}
+.steps2 li{position:relative}
+.steps2 li:not(:last-child)::after{content:"";position:absolute;left:31px;top:52px;bottom:-10px;width:2px;background:var(--line)}
+.steps2 li.done:not(:last-child)::after{background:var(--olive)}
+.stp{width:100%;display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;text-align:left;padding:8px;border:0;background:transparent;border-radius:16px;font-weight:600;justify-content:stretch;color:var(--ink)}
+.stp:hover{background:var(--sunk)}
+.si{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:22px;background:var(--sunk);position:relative;z-index:1;margin-left:2px}
+.done .si{background:var(--olive);color:var(--surface);font-family:var(--display);font-weight:600}
+.cur .stp{background:var(--saffron-soft)}
+.cur .si{background:var(--saffron);box-shadow:0 0 0 4px var(--saffron-soft)}
+.st b{display:block;font-size:15.5px;font-weight:800}
+.st small{display:block;color:var(--muted);font-size:12.5px;font-weight:600;line-height:1.3}
+.done .st b{color:var(--muted)}
+.sa{font-size:13px;font-weight:800;color:var(--olive);white-space:nowrap}
+.cur .sa{color:#9A6210}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cur .sa{color:var(--saffron)}}
+:root[data-theme="dark"] .cur .sa{color:var(--saffron)}
+.okline{margin:0;text-align:center;font-weight:800;color:var(--olive)}
+.newweek{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;background:linear-gradient(140deg,var(--olive-soft),var(--surface) 70%)}
+.newweek>.emo{font-size:34px}
+.newweek button{grid-column:1/-1}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:112px;gap:10px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
+.strip::-webkit-scrollbar{display:none}
+.mini-day{display:grid;justify-items:center;gap:6px;padding:10px 6px;border:0;border-radius:18px;box-shadow:var(--shadow-s);text-align:center;color:var(--ink);align-content:start}
+.mini-day small{font-weight:800;color:var(--muted);font-size:12px}
+.mini-day .plate{--s:50px}
+.mini-day .mn{font-size:12px;font-weight:700;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* Panier */
+.recu{display:flex;flex-wrap:wrap;gap:6px}
+.chip.warn{background:var(--saffron-soft);color:#9A6210}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.warn{color:var(--saffron)}}
+:root[data-theme="dark"] .chip.warn{color:var(--saffron)}
+.subtabs{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none}
+.subtabs::-webkit-scrollbar{display:none}
+.subtabs button{flex:none;border-radius:99px;padding:9px 14px;box-shadow:var(--shadow-s);border-color:transparent;font-size:14px}
+.subtabs button .emo{font-size:18px}
+.subtabs button b{background:var(--olive);color:var(--surface);border-radius:99px;padding:0 7px;font-size:12px}
+.subtabs button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.ctabar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ctabar .big{width:auto;flex:1 1 220px}
+
+/* Menus */
+.mlist{display:grid;gap:8px}
+.mrow{display:grid;grid-template-columns:44px auto 1fr auto;gap:12px;align-items:center;text-align:left;padding:10px 12px;border:0;border-radius:20px;box-shadow:var(--shadow-s);color:var(--ink);justify-content:stretch;font-weight:600}
+.mrow .md{display:grid;line-height:1.1}
+.mrow .md b{font-family:var(--display);font-weight:600;font-size:16px}
+.mrow .md small{font-size:11.5px;color:var(--muted);font-weight:700}
+.mrow .plate{--s:52px}
+.mrow .mt b{display:block;font-size:14.5px;font-weight:800;line-height:1.25}
+.mrow .mt small{display:block;font-size:12px;color:var(--muted);font-weight:700;margin-top:2px}
+.mrow .mx{color:var(--muted);font-size:18px}
+.ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ideas .rc .art{height:96px}.ideas .rc .art .plate{--s:64px}
+@media (max-width:520px){.ideas{grid-template-columns:1fr}.ideas .rc{grid-template-columns:100px 1fr;grid-template-rows:auto}.ideas .rc .art{height:auto;min-height:88px}}
+
+/* Liste */
+.listhead{display:grid;gap:14px}
+.item .ib{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sunk);font-family:var(--emoji);font-size:24px}
+.item .stepper{grid-template-columns:30px minmax(44px,auto) 30px}
+.item .stepper b{font-size:13px}
+.link{padding:0;color:var(--olive);font-size:13.5px;text-decoration:underline}
+
+/* Ajouter un produit */
+.crumbs{display:flex;align-items:center;gap:2px;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.crumbs button{padding:4px 6px;font-size:13.5px;color:var(--olive)}
+.crumbs b{font-weight:800;color:var(--ink);padding:4px 6px}
+.bigcats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.bc{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;text-align:left;padding:14px;border-radius:20px;border:0;box-shadow:var(--shadow-s);font-size:15px;font-weight:800;justify-content:stretch;background:var(--surface)}
+.bc .emo{font-size:30px;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:var(--sunk)}
+.bc small{grid-column:2;font-size:12px;color:var(--muted);font-weight:700;margin-top:-10px}
+.subs .bc{grid-template-rows:auto auto}
+.subs .bc .emo{grid-row:span 2}
+.tile.has{border-color:var(--olive);background:var(--olive-soft)}
+.badge{position:absolute;top:6px;right:6px;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:var(--olive);color:var(--surface);font-size:12px;font-weight:800;display:grid;place-items:center}
+
+/* Commande */
+.cmd{display:grid;gap:12px}
+.cmdcard{display:grid;justify-items:center;gap:4px;padding:10px 0;text-align:center}
+.bigemo{font-size:70px;width:124px;height:124px;border-radius:50%;display:grid;place-items:center;background:var(--sunk)}
+.cmdcard h2{font-size:26px;margin-top:8px}
+.qbig{margin:0;font-family:var(--display);font-size:20px;color:var(--muted)}
+.copied{background:var(--sky-soft)!important;color:var(--sky)!important}
+.progress{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden}
+.progress i{display:block;height:100%;background:var(--olive);border-radius:4px;transition:width .3s}
+.finish{display:grid;gap:12px;justify-items:center;text-align:center}
+.finish>.emo{font-size:60px}
+.rdv{display:flex;gap:12px;align-items:center;background:var(--saffron-soft);border-radius:18px;padding:12px 16px;text-align:left;width:100%}
+.rdv .emo{font-size:30px}
+.rdv b{display:block;font-size:16px}.rdv small{color:var(--muted);font-weight:700}
+.ck2{display:flex;gap:10px;align-items:center;padding:6px 2px;font-weight:700;font-size:14px}
+.ck2 input{width:22px;height:22px;accent-color:var(--olive)}
+.ck2 small{color:var(--muted);font-weight:600;margin-left:auto}
+.pickban{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--saffron-soft);border-radius:18px;padding:12px 14px;font-weight:800}
+
 </style>
 </head>
 <body>
 
 <header class="band gut" id="band"></header>
 <div class="gut"><div class="wrap"><p class="status" id="status" hidden></p><main id="view"></main></div></div>
-<nav class="tabs" id="tabs">
-  <a href="#semaine" data-tab="semaine"><span class="ico">🍽️</span>Semaine</a>
-  <a href="#courses" data-tab="courses"><span class="ico">🛒</span>Courses<span class="count" id="cCount" hidden></span></a>
+<nav class="tabs" id="tabs" style="grid-template-columns:repeat(3,1fr)">
+  <a href="#semaine" data-tab="semaine"><span class="ico">🏡</span>Ma semaine</a>
+  <a href="#liste" data-tab="liste"><span class="ico">📝</span>Liste<span class="count" id="cCount" hidden></span></a>
   <a href="#recettes" data-tab="recettes"><span class="ico">📖</span>Recettes</a>
-  <a href="#foyer" data-tab="foyer"><span class="ico">🏡</span>Foyer</a>
 </nav>
-<button class="fab" id="fabMq" aria-label="Noter un article qui manque"><span class="emo">📝</span>Il manque</button>
+<button class="fab" id="fabMq" aria-label="Ajouter un produit qui manque"><span class="emo">📝</span>Il manque</button>
 <dialog id="sheet"><div class="sheet" id="sheetBody"></div></dialog>
 
 <script>
@@ -659,6 +760,13 @@ LIB_RAW.push(
  "Faites cuire le riz.|Faites revenir l'ail émincé 1 min dans l'huile d'olive sans le brûler.|Ajoutez les crevettes et faites-les sauter 3 min.|Ajoutez persil et citron, servez sur le riz.","|esp"]
 );
 
+// ================= Rayons du magasin : catégories → sous-catégories → produits =================
+[["🍎","Compotes",2,"paquet",2.2],["🍮","Desserts lactés",2,"paquet",2.5],["🥛","Lait végétal",2,"l",1.8],["🫒","Huile d'olive",3,"bouteille",7],["🫙","Huile",3,"bouteille",3],
+ ["🍶","Vinaigre",3,"bouteille",1.5],["🧂","Sel",3,"paquet",.8],["🧂","Poivre",3,"pièce",2.5],["🌶️","Épices",3,"pièce",2],["🌾","Farine",3,"paquet",1],["🫖","Thé",3,"paquet",2.5],
+ ["🍫","Pâte à tartiner",3,"pièce",3.5],["🍯","Miel",3,"pièce",4],["🍰","Gâteaux",3,"paquet",2],["🍬","Sucre",3,"paquet",1.2],["🧁","Levure",3,"paquet",1],
+ ["🤧","Mouchoirs",6,"paquet",2.5],["🎞️","Film alimentaire",6,"pièce",2],["📜","Papier cuisson",6,"pièce",2],["🚿","Gel douche",6,"pièce",3],["🧴","Shampoing",6,"pièce",3.5],["⚪","Coton",6,"paquet",1.5]
+].forEach(([e,n,r,u,p])=>{if(!CAT.some(c=>c.n===n))CAT.push({e,n,r,u,p})});
+
 const DISH=["🍝","🍲","🥘","🍛","🍜","🍕","🥗","🐟","🍗","🥩","🍳","🥧","🌮","🌯","🥙","🍔","🍖","🥞","🍤","🦪","🥟","🫕","🍱","🥪","🌭","🍚","🎃","🥕"];
 const TYPES={vege:["Végé","🥦"],oeufs:["Œufs","🥚"],poisson:["Poisson","🐟"],volaille:["Volaille","🍗"],viande:["Viande","🥩"]};
 const APPS={thermomix:["Thermomix","🌀","tm"],airfryer:["Airfryer","💨","af"],four:["Four","🔥",""],poele:["Poêle","🍳",""],cocotte:["Cocotte","🍲",""]};
@@ -688,12 +796,53 @@ const LIB=LIB_RAW.map(([id,nom,icone,type,app,min,saison,fec,ings,steps])=>({id:
   ingredients:ings.split(",").map(s=>s.trim()).filter(Boolean).map(s=>{const m=s.match(/^(.*?)\s+([\d.]+)$/);const n=m?m[1]:s,q=m?+m[2]:null,c=catFor(n);return {n:c?c.n:n,q:c?q:null,u:c?c.u:""}}),
   steps:steps.split("|"),...(t=>({kids:t[0].includes("k"),reheat:t[0].includes("r"),origine:t[1]||"fr"}))((LIB_RAW.find(x=>x[0]===id)[10]||TAGS[id]||"|fr").split("|"))}));
 
+const TREE=[
+ {id:"fl",n:"Fruits & légumes",e:"🥕",subs:[
+  {n:"Racines",e:"🥕",items:["Carottes","Pommes de terre","Patates douces","Oignons","Échalotes","Ail","Betteraves","Navets","Panais","Radis"]},
+  {n:"Verts & choux",e:"🥦",items:["Salade","Épinards","Poireaux","Brocoli","Chou","Chou-fleur","Haricots verts","Endives","Céleri","Fenouil"]},
+  {n:"Légumes du soleil",e:"🍅",items:["Tomates","Courgettes","Aubergine","Poivrons","Concombre","Avocats","Courge","Champignons"]},
+  {n:"Herbes & citron",e:"🌿",items:["Persil","Coriandre","Basilic","Gingembre","Citron"]},
+  {n:"Fruits",e:"🍎",items:["Pommes","Poires","Bananes","Clémentines","Kiwis","Raisin","Fraises","Châtaignes"]}]},
+ {id:"vp",n:"Viande & poisson",e:"🥩",subs:[
+  {n:"Volaille",e:"🍗",items:["Blancs de poulet","Cuisses de poulet","Poulet entier","Escalopes de dinde","Magret de canard"]},
+  {n:"Bœuf & porc",e:"🥩",items:["Bœuf haché","Steaks hachés","Émincé de bœuf","Bœuf à braiser","Échine de porc","Filet mignon de porc"]},
+  {n:"Charcuterie",e:"🥓",items:["Jambon","Jambon cru","Lardons","Saucisses","Merguez","Chorizo"]},
+  {n:"Poisson",e:"🐟",items:["Pavés de saumon","Saumon fumé","Cabillaud","Filets de colin","Filets de lieu","Pavés de truite","Crevettes","Moules"]}]},
+ {id:"fr",n:"Crèmerie",e:"🧀",subs:[
+  {n:"Œufs, lait, beurre",e:"🥚",items:["Œufs","Lait","Beurre","Crème fraîche","Lait végétal"]},
+  {n:"Yaourts & desserts",e:"🥛",items:["Yaourts","Fromage blanc","Compotes","Desserts lactés"]},
+  {n:"Fromages",e:"🧀",items:["Gruyère râpé","Parmesan","Mozzarella","Fromage de chèvre","Feta","Comté","Reblochon","Ricotta","Fromage à raclette","Tofu"]}]},
+ {id:"es",n:"Épicerie salée",e:"🥫",subs:[
+  {n:"Pâtes & riz",e:"🍝",items:["Pâtes","Riz","Semoule","Quinoa","Boulgour","Polenta","Nouilles chinoises","Feuilles de lasagne","Gnocchis","Tortellinis"]},
+  {n:"Légumes secs",e:"🫘",items:["Lentilles","Lentilles corail","Pois chiches","Haricots rouges","Haricots blancs","Pois cassés"]},
+  {n:"Conserves & sauces",e:"🥫",items:["Tomates concassées","Coulis de tomate","Thon en boîte","Sardines en boîte","Maïs","Lait de coco","Olives","Pesto"]},
+  {n:"Huile, sel, épices",e:"🧂",items:["Huile d'olive","Huile","Vinaigre","Sel","Poivre","Épices","Moutarde","Bouillon cube","Chapelure"]}]},
+ {id:"su",n:"Petit-déj & sucré",e:"🥣",subs:[
+  {n:"Petit-déjeuner",e:"☕",items:["Café","Thé","Céréales","Flocons d'avoine","Confiture","Pâte à tartiner","Miel"]},
+  {n:"Goûter",e:"🍪",items:["Biscuits","Gâteaux","Chocolat","Compotes"]},
+  {n:"Pâtisserie",e:"🧁",items:["Farine","Sucre","Levure"]}]},
+ {id:"bo",n:"Boissons",e:"🥤",subs:[
+  {n:"Eaux",e:"💧",items:["Eau (pack 6 × 1,5 L)","Eau gazeuse"]},
+  {n:"Jus & sirops",e:"🧃",items:["Jus d'orange","Sirop"]},
+  {n:"Bières & vins",e:"🍺",items:["Bières (pack de 10)","Vin"]}]},
+ {id:"bs",n:"Pain & surgelés",e:"🥖",subs:[
+  {n:"Pain",e:"🥖",items:["Baguette","Pain de mie","Pains burger","Tortillas","Galettes de sarrasin"]},
+  {n:"Pâtes à tarte",e:"🥧",items:["Pâte brisée","Pâte feuilletée","Pâte à pizza"]},
+  {n:"Surgelés",e:"🧊",items:["Petits pois surgelés","Légumes surgelés","Frites surgelées","Glace"]}]},
+ {id:"ma",n:"Maison & hygiène",e:"🧴",subs:[
+  {n:"Papier",e:"🧻",items:["Papier toilette","Essuie-tout","Mouchoirs"]},
+  {n:"Cuisine & ménage",e:"🧽",items:["Liquide vaisselle","Pastilles lave-vaisselle","Éponges","Sacs poubelle","Lessive","Film alimentaire","Papier cuisson"]},
+  {n:"Salle de bain",e:"🧼",items:["Savon","Gel douche","Shampoing","Dentifrice","Coton"]}]}
+];
+const TOPOF=new Map();TREE.forEach(t=>t.subs.forEach(s=>s.items.forEach(n=>{if(!TOPOF.has(key(n)))TOPOF.set(key(n),t.id)})));
+const RTOP=["fl","vp","fr","es","bs","bs","ma","bo","autre"];
+function topOf(n){return TOPOF.get(key(n))||(catFor(n)?RTOP[catFor(n).r]:"autre")}
+const TOPS=TREE.map(t=>[t.id,t.n,t.e]).concat([["autre","Divers","🛍️"]]);
+
 // ================= État =================
 const FRUITS=new Set(["Pommes","Poires","Bananes","Clémentines","Kiwis","Raisin","Fraises","Châtaignes","Citron","Avocats"].map(key));
 let manque=[];
 const FORD=["Pommes","Poires","Clémentines","Kiwis","Bananes","Raisin","Fraises","Citron","Avocats","Châtaignes"].map(key);
-let showAllVeg=false,lastCopied=null;
-const searchTerm=n=>String(n).replace(/\s*\(.*?\)\s*/g," ").replace(/\s+surgel(é|e)es?$/i," surgelé").trim().toLowerCase();
 let db=null,perso=[],semaine=null,foyer=null,loaded=false,tab="semaine",filtre="tous",recherche="";
 function F(){return Object.assign({personnes:4,repas:"we",budget:130,placard:DEF_PLACARD,essentiels:DEF_ESS,favoris:[]},foyer||{})}
 function S(){return Object.assign({debut:iso(lastThursday()),panier:[],oeufsPanier:6,plan:{},verrous:{},coches:{},extras:[],recent:[]},semaine||{})}
@@ -750,28 +899,31 @@ function bilan(){const c={vege:0,oeufs:0,poisson:0,volaille:0,viande:0};slots().
 function roundQ(q,u){if(u==="g")return Math.ceil(q/50)*50;if(u==="cl")return Math.ceil(q/10)*10;if(u==="kg"||u==="l")return Math.round(q*10)/10;return Math.max(1,Math.ceil(q-0.05))}
 function fmtQ(q,u){if(q==null)return"";const big=u==="g"&&q>=1000;const uu=u==="pièce"?"":big?"kg":u;const qq=big?Math.round(q/100)/10:q;const pl=qq>1&&["boîte","botte","paquet","pack","bouteille"].includes(uu)?"s":"";return String(qq).replace(".",",")+(uu?" "+uu+pl:"")}
 function liste(){
-  const s=S(),f=F(),agg=new Map(),skip=new Set(),use={};
-  const add=(n,q,u,src)=>{const c=catFor(n),kk=key(n),cur=agg.get(kk)||{n:c?c.n:n,u:c?c.u:(u||""),q:0,hasQ:false,r:c?c.r:8,src:new Set(),recq:0};
-    if(q!=null){cur.q+=q;cur.hasQ=true;if(!["essentiel","ajout","📝 il manque"].includes(src))cur.recq+=q}cur.src.add(src);agg.set(kk,cur)};
+  const s=S(),f=F(),agg=new Map(),skip=new Set(),use={},qte=s.qte||{};
+  const add=(n,q,u,src,kind)=>{const c=catFor(n),kk=key(n),cur=agg.get(kk)||{n:c?c.n:n,u:c?c.u:(u||""),q:0,hasQ:false,src:new Set(),recq:0,kinds:new Set()};
+    if(q!=null){cur.q+=q;cur.hasQ=true;if(kind==="recette")cur.recq+=q}cur.src.add(src);cur.kinds.add(kind);agg.set(kk,cur)};
   slots().forEach(x=>{const r=byId(s.plan[x.k]);if(!r||!r.ingredients)return;const k=f.personnes/(r.portions||4);
-    r.ingredients.forEach(i=>{if(inList(i.n,f.placard)||!catFor(i.n)&&i.q==null){skip.add(i.n);return}add(i.n,i.q!=null?i.q*k:null,i.u,r.nom)})});
-  f.essentiels.filter(e=>e.q>0).forEach(e=>add(e.n,e.q,null,"essentiel"));
-  (s.extras||[]).forEach(e=>add(e.n,e.q,e.u,"ajout"));
-  manque.forEach(m=>add(m.n,m.q,m.u,"📝 il manque"));
-  // Déduction du panier bio
+    r.ingredients.forEach(i=>{if(inList(i.n,f.placard)||!catFor(i.n)&&i.q==null||catFor(i.n)&&i.q==null){skip.add(i.n);return}add(i.n,i.q*k,i.u,r.nom,"recette")})});
+  f.essentiels.filter(e=>e.q>0).forEach(e=>add(e.n,e.q,null,"chaque semaine","ess"));
+  (s.extras||[]).forEach(e=>add(e.n,e.q,e.u,"ajouté","ajout"));
+  manque.forEach(m=>add(m.n,m.q,m.u,"ajouté","ajout"));
   for(const p of panier()){
-    const entry=[...agg.entries()].find(([,it])=>!/oeuf/.test(norm(it.n))&&inList(it.n,[p.n]));
-    const pk=key(p.n);
+    const entry=[...agg.entries()].find(([,it])=>!/oeuf/.test(norm(it.n))&&inList(it.n,[p.n]));const pk=key(p.n);
     if(!entry){use[pk]={recu:p.q,besoin:0};continue}
     const[kk,it]=entry;use[pk]={recu:p.q,besoin:it.recq||0};
     if(p.q==null||!it.hasQ||catFor(p.n)?.u!==it.u){agg.delete(kk);skip.add(it.n);continue}
-    if(it.q<=p.q){agg.delete(kk);skip.add(it.n)}else{it.q-=p.q;it.note=`${fmtQ(p.q,it.u)} déjà dans le panier bio`}
+    if(it.q<=p.q){agg.delete(kk);skip.add(it.n)}else{it.q-=p.q;it.note=`${fmtQ(p.q,it.u)} dans le panier bio`}
   }
   const eggs=agg.get(key("Œufs"));
-  if(eggs&&eggs.hasQ){const need=Math.ceil(eggs.q)-(s.oeufsPanier||0);if(need<=0){agg.delete(key("Œufs"));skip.add("œufs")}else{eggs.q=need;eggs.note=`${s.oeufsPanier} déjà dans le panier bio`}}
-  const items=[...agg.entries()].map(([kk,v])=>{const c=catFor(v.n),q=v.hasQ?roundQ(v.q,v.u):null;return {id:kk,n:v.n,q,u:v.u,r:v.r,src:[...v.src].join(", "),note:v.note,prix:c?cost(q??1,c.u,c.p):0,est:!!c}});
-  items.sort((a,b)=>a.r-b.r||a.n.localeCompare(b.n,"fr"));
-  return {items,skip:[...skip],use,total:items.reduce((a,i)=>a+i.prix,0)};
+  if(eggs&&eggs.hasQ){const need=Math.ceil(eggs.q)-(s.oeufsPanier||0);if(need<=0){agg.delete(key("Œufs"));skip.add("œufs")}else{eggs.q=need;eggs.note=`${s.oeufsPanier} dans le panier bio`}}
+  const items=[],retires=[];
+  for(const[kk,v]of agg){const c=catFor(v.n);let q=v.hasQ?roundQ(v.q,v.u):null;
+    if(kk in qte){if(qte[kk]<=0){retires.push({id:kk,n:v.n});continue}q=qte[kk]}
+    const why=v.kinds.has("recette")?"pour "+[...v.src].filter(x=>x!=="chaque semaine"&&x!=="ajouté").join(", "):v.kinds.has("ajout")?"ajouté à la main":"chaque semaine";
+    items.push({id:kk,n:v.n,q,u:v.u,top:topOf(v.n),why,note:v.note,prix:c?cost(q??1,c.u,c.p):0,est:!!c,ess:v.kinds.has("ess"),manuel:v.kinds.has("ajout")})}
+  const order=TOPS.map(t=>t[0]);
+  items.sort((a,b)=>order.indexOf(a.top)-order.indexOf(b.top)||a.n.localeCompare(b.n,"fr"));
+  return {items,retires,skip:[...skip],use,total:items.reduce((a,i)=>a+i.prix,0)};
 }
 
 // ================= Écritures =================
@@ -784,99 +936,6 @@ function saveFoyer(patch,msg){foyer={...F(),...patch};render();if(!db)return Pro
 const tcls=r=>"t-"+(r&&r.type?r.type:"none");
 function chips(r,price=true){if(!r||!r.type)return"";const a=APPS[r.app];
   return `${a?`<span class="chip ${a[2]}"><span class="emo">${a[1]}</span>${a[0]}</span>`:""}<span class="chip">⏱ ${r.min||30} min</span>${price?`<span class="chip">${eur(perPers(r))}/pers.</span>`:""}`}
-function render(){
-  const s=S(),d0=parseISO(s.debut),d6=new Date(d0);d6.setDate(d6.getDate()+6);
-  const range=`Du jeudi ${d0.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})} au mercredi ${d6.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})}`;
-  const titles={semaine:`Bon appétit <span>!</span>`,courses:`La grosse course`,recettes:`Nos recettes`,foyer:`Notre foyer`};
-  const band=$("#band");band.className="band gut"+(tab==="semaine"?"":" small");
-  band.innerHTML=`<div class="wrap"><div class="kicker">${tab==="recettes"?all().length+" plats, dont "+LIB.filter(r=>r.app==="thermomix").length+" au Thermomix et "+LIB.filter(r=>r.app==="airfryer").length+" à l'Airfryer":range}</div><h1>${titles[tab]}</h1><span id="sync" class="sync"></span></div>`;SYNC.syncBadge();
-  document.querySelectorAll("#tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.tab===tab?"page":"false"));
-  $("#fabMq").hidden=tab==="courses";
-  const L=liste(),left=L.items.filter(i=>!s.coches[i.id]).length,cc=$("#cCount");cc.hidden=!left;cc.textContent=left;
-  const v=$("#view");v.className=tab==="semaine"?"":"flat";
-  if(!loaded&&db){v.innerHTML=`<div class="empty"><span class="emo">🧺</span><strong>Ouverture du carnet…</strong>Chargement de votre semaine.</div>`;return}
-  const keep=document.activeElement?.id==="libSearch",keepMq=document.activeElement?.id==="mq-tab"?document.activeElement.value:null;
-  v.innerHTML=tab==="semaine"?vSemaine(s,L):tab==="courses"?vCourses(s,L):tab==="recettes"?vRecettes():vFoyer();
-  if(keep){const i=$("#libSearch");if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}}
-  if(keepMq!==null){const i=$("#mq-tab");if(i){i.value=keepMq;i.focus();const b=$("#mqs-tab");if(b)b.innerHTML=mqSug(keepMq)}}
-}
-
-function vTonight(s){
-  const ti=todayIdx(),idx=ti>=0&&ti<=6?ti:0,k="d"+idx+"s",r=byId(s.plan[k]);
-  const when=ti===idx?`Ce soir · ${JOURS[idx]}`:`${JOURS[idx]} soir`;
-  if(!Object.keys(s.plan).length)return `<section class="card tonight"><span class="plate empty">✨</span><div><div class="when">Nouvelle semaine</div><h3>Qu'est-ce qu'on mange cette semaine ?</h3><p class="hint">Un tap, et l'appli compose 7 dîners variés et de saison, en commençant par les légumes du panier.</p></div>
-    <div class="acts"><button class="sun" id="gen">✨ Proposer ma semaine</button></div></section>`;
-  if(!r)return `<section class="card tonight"><span class="plate empty">+</span><div><div class="when">${when}</div><h3>Rien de prévu</h3></div><div class="acts"><button class="sun" data-day="${k}">Choisir un plat</button></div></section>`;
-  return `<section class="card tonight"><span class="plate">${r.icone}</span><div><div class="when">${when}</div><h3>${esc(r.nom)}</h3><div class="chips">${chips(r,false)}</div></div>
-    <div class="acts">${r.type?`<button class="sun" data-open="${r.id}">📖 Voir la recette</button>`:""}<button class="soft" data-day="${k}">🔄 Changer</button></div></section>`;
-}
-function vSemaine(s,L){
-  const f=F(),c=bilan(),sc=slots().length/7,planned=Object.keys(s.plan).length,ti=todayIdx();
-  const pct=Math.min(100,Math.round(L.total/f.budget*100)),over=L.total>f.budget;
-  const veg=CAT.filter(x=>x.r===0),pan=panier();
-  const panKeys=new Set(pan.map(p=>key(p.n)));
-  const tile=(n,e)=>{const p=pan.find(x=>key(x.n)===key(n));const u=L.use[key(n)];
-    if(!p)return `<div class="pt"><button class="main" data-pan="${esc(n)}"><span class="emo">${e}</span>${esc(n)}</button></div>`;
-    const ratio=p.q&&u?Math.min(1,u.besoin/p.q):0;
-    return `<div class="pt on"><button class="main" data-pan="${esc(n)}" aria-label="Retirer ${esc(n)}"><span class="emo">${e}</span>${esc(n)}</button>
-      ${p.q!=null?`<div class="qty"><button data-panq="${esc(n)}:-1" aria-label="Moins">−</button><b>${esc(fmtQ(p.q,catFor(n)?.u))}</b><button data-panq="${esc(n)}:1" aria-label="Plus">+</button></div>`:""}
-      ${p.q?`<div class="use" title="Part prévue dans les menus"><i class="${ratio>=1?"full":""}" style="width:${Math.round(ratio*100)}%"></i></div>`:""}</div>`};
-  const used=pan.filter(p=>p.q&&L.use[key(p.n)]?.besoin>0).length;
-  return `
-  ${vTonight(s)}
-  <section style="display:grid;gap:14px">
-    <div class="row spread"><h2>La semaine</h2>${planned?`<button class="soft" id="gen">✨ Reproposer</button>`:""}</div>
-    <div class="days">${slots().map(x=>{const r=byId(s.plan[x.k]),isT=x.i===ti&&x.label==="Soir";
-      return `<button class="day ${tcls(r)} ${r?"":"isEmpty"} ${isT?"today":""}" data-day="${x.k}">${isT?`<span class="flag">Ce soir</span>`:""}
-        <span class="dh"><b>${JOURS[x.i]}${x.label==="Midi"?" midi":(F().repas==="we"&&(x.i===2||x.i===3)?" soir":"")}</b><span>${dayDate(x.i)}</span></span>
-        <span class="row" style="gap:10px;flex-wrap:nowrap"><span class="plate ${r?"":"empty"}">${r?r.icone:"+"}</span><span class="dn">${r?esc(r.nom):"Choisir"}</span></span>
-        ${r&&r.type?`<span class="chips">${chips(r,false)}</span>`:""}${s.verrous[x.k]?`<span class="lock">🔒</span>`:""}</button>`}).join("")}</div>
-    ${planned?`<p class="hint">Touchez un jour pour voir la recette ou changer de plat.</p>`:""}
-  </section>
-  <section class="card bilan">
-    <div class="ring" style="--p:${pct};--c:${over?"var(--tomato)":"var(--olive)"}"><div><span><b>${eur(L.total)}</b><br><small>sur ${f.budget} €</small></span></div></div>
-    <div><h2 style="font-size:19px">${over?"Un peu au-dessus du budget":"Dans le budget"}</h2>
-      <p class="hint">${over?"Échangez un plat de viande contre un plat végé ou une soirée 🍱 restes.":"Estimation de la grosse course : repas, essentiels et ajouts."}</p>
-      <div class="dots">${Object.keys(TYPES).map(t=>{const[mn,mx]=CIBLE[t],lo=Math.floor(mn*sc),hi=Math.ceil(mx*sc),off=planned&&(c[t]<lo||c[t]>hi);
-        return `<div class="dot t-${t} ${off?"off":""}" title="${TYPES[t][0]} : idéal ${lo?lo+" à ":"jusqu'à "}${hi}"><span class="emo">${TYPES[t][1]}</span><b>${c[t]}</b>${TYPES[t][0]}</div>`}).join("")}</div></div>
-  </section>
-  <section style="display:grid;gap:14px">
-    <div><h2>🧺 Le panier bio du jeudi</h2><p class="hint" style="margin-top:4px">${pan.length?`${pan.length} produits reçus · ${s.oeufsPanier} œufs. La barre orange montre la part prévue dans les menus.`:`Touchez ce que vous avez reçu, puis réglez la quantité. Les menus s'en servent en priorité et la liste de courses n'achète que le complément.`}</p></div>
-    ${["leg","fruit"].map(gr=>{const isF=gr==="fruit",grp=x=>FRUITS.has(key(x));
-      const sel=pan.filter(p=>grp(p.n)===isF),rest=veg.filter(x=>grp(x.n)===isF&&!panKeys.has(key(x.n))).sort((x,y)=>isF?FORD.indexOf(key(x.n))-FORD.indexOf(key(y.n)):0),lim=showAllVeg?99:Math.max(isF?3:5,(isF?5:9)-sel.length);
-      return `<div class="pgroup"><div class="pgh"><span class="emo">${isF?"🍎":"🥕"}</span><b>${isF?"Fruits":"Légumes"}</b><span class="hint">${sel.length?sel.length+" reçu"+(sel.length>1?"s":""):"rien de coché"}</span></div>
-        <div class="ptiles">${sel.map(p=>{const c=catFor(p.n);return tile(c?c.n:p.n,c?c.e:"🧺")}).join("")}${rest.slice(0,lim).map(x=>tile(x.n,x.e)).join("")}
-        ${showAllVeg&&!isF?`<div class="pt add"><button class="main" id="panOther"><span class="emo">+</span>Autre</button></div>`:""}</div></div>`}).join("")}
-    ${showAllVeg?"":`<button class="soft" id="vegAll" style="justify-self:center">Voir tous les fruits et légumes</button>`}
-  </section>
-  <div class="row spread"><p class="hint">Jeudi prochain : panier, repas et coches repartent à zéro. Ce qui a été noté et pas encore commandé reste sur la liste.</p><button class="soft" id="newWeek">Passer à la semaine suivante</button></div>`;
-}
-
-function vCourses(s,L){
-  const f=F(),done=L.items.filter(i=>s.coches[i.id]).length,tot=L.items.length,left=L.items.filter(i=>!s.coches[i.id]),leftCost=left.reduce((a,i)=>a+i.prix,0);
-  const pct=tot?Math.round(done/tot*100):0;
-  return `
-  <section class="card mq">${mqBlock("tab")}</section>
-  <section class="card shophead">
-    <div class="ring" style="--p:${pct}"><div><span><b>${done}/${tot}</b><br><small>commandés</small></span></div></div>
-    <div><h2 style="font-size:19px">${left.length?`Encore ${left.length} article${left.length>1?"s":""}`:tot?"Tout est commandé 🎉":"Liste vide"}</h2>
-      <p class="hint">${left.length?`Environ ${eur(leftCost)} · 📋 copie le mot à chercher, puis cochez « Commandé ».`:"Notez ce qui manque ci-dessus ou proposez votre semaine."}</p>
-      <div class="row" style="gap:6px;margin-top:8px"><button class="soft" id="copy">📋 Copier la liste</button>${done?`<button class="ghost" id="uncheck">Tout décocher</button>`:""}</div></div>
-  </section>
-  ${tot?RAYONS.map(([name,e],r)=>{const it=L.items.filter(i=>i.r===r);if(!it.length)return"";const d=it.filter(i=>s.coches[i.id]).length;
-    return `<section class="rayon"><h3><span class="emo">${e}</span>${name}<small>${d}/${it.length}</small></h3>${it.map(i=>`
-    <div class="item ${s.coches[i.id]?"done":""}"><button class="ib" data-chk="${esc(i.id)}" aria-pressed="${!!s.coches[i.id]}" aria-label="${s.coches[i.id]?"Décocher":"Cocher"} ${esc(i.n)}">${emojiFor(i.n)}</button>
-      <div class="n">${esc(i.n)}<span class="q">${esc(fmtQ(i.q,i.u))}</span><span class="src">${i.src.includes("il manque")?`<span class="noted">📝 noté</span> `:""}${i.est?"~"+eur(i.prix)+" · ":""}${esc(i.src.length>58?i.src.slice(0,55)+"…":i.src)}${i.note?" · "+esc(i.note):""}</span></div>
-      <span class="acts2"><button class="cp ${lastCopied===i.id?"on":""}" data-copy="${esc(i.id)}" data-term="${esc(searchTerm(i.n))}" aria-label="Copier « ${esc(searchTerm(i.n))} »">${lastCopied===i.id?"✓ Copié":"📋 Copier"}</button><label class="ck"><input type="checkbox" data-chk2="${esc(i.id)}" ${s.coches[i.id]?"checked":""}><span>Commandé</span></label></span></div>`).join("")}</section>`}).join("")
-  :`<div class="empty"><span class="emo">🛒</span><strong>Rien à acheter pour l'instant</strong>Proposez votre semaine : les ingrédients arrivent ici, rangés par rayon.</div>`}
-  <section style="display:grid;gap:12px">
-    <div class="row spread"><div><h2>Les essentiels</h2><p class="hint">Ajoutés à chaque liste. 0 pour sauter une semaine.</p></div><button class="soft" id="essAdd">+ Ajouter</button></div>
-    <div class="ess">${f.essentiels.map((e,ix)=>`<div class="essi ${e.q?"":"zero"}"><span class="emo">${emojiFor(e.n)}</span><div><div class="nm">${esc(e.n)}</div>
-      <span class="stepper"><button data-ess="${ix}:-1" aria-label="Moins">−</button><b>${e.q}</b><button data-ess="${ix}:1" aria-label="Plus">+</button></span></div></div>`).join("")}</div>
-  </section>
-  ${L.skip.length?`<p class="hint">🏡 Déjà à la maison (panier bio ou placard) : ${esc([...new Set(L.skip.map(x=>x.toLowerCase()))].join(", "))}</p>`:""}`;
-}
-
 // ================= Classement intelligent =================
 const ORIG={fr:["Française","🥖"],ita:["Italienne","🍝"],asie:["Asiatique","🥢"],orient:["Orientale","🫖"],mex:["Mexicaine","🌮"],inde:["Indienne","🍛"],esp:["Espagnole","🥘"],usa:["Américaine","🍔"],monde:["Fusion","🌍"]};
 const GRADE={A:["Très équilibré","g-A","🥗"],B:["Équilibré","g-B","🙂"],C:["Plaisir","g-C","🧁"]};
@@ -986,21 +1045,6 @@ function sheetFac(){
   <div class="row spread" style="position:sticky;bottom:-20px;background:var(--bg);padding-block:12px"><button class="ghost" id="facReset">Tout effacer</button><button class="primary" data-close>Voir ${n} recette${n>1?"s":""}</button></div>`);
 }
 
-function vFoyer(){const f=F(),s=S();
-  const line=(t,h,ctrl)=>`<div class="row spread" style="padding:12px 0;border-top:1px solid var(--line)"><span><b>${t}</b>${h?`<br><span class="hint">${h}</span>`:""}</span>${ctrl}</div>`;
-  return `<section class="card" style="display:grid;gap:2px;padding-block:8px">
-    ${line("👨‍👩‍👧‍👦 Personnes à table","Les quantités s'adaptent.",`<span class="stepper"><button data-step="pers:-1">−</button><b>${f.personnes}</b><button data-step="pers:1">+</button></span>`)}
-    ${line("💶 Budget par semaine","Pour garder le cap sur les économies.",`<span class="stepper"><button data-step="budget:-10">−</button><b>${f.budget} €</b><button data-step="budget:10">+</button></span>`)}
-    ${line("🥚 Œufs dans le panier bio","",`<span class="stepper"><button data-step="oeufs:-1">−</button><b>${s.oeufsPanier}</b><button data-step="oeufs:1">+</button></span>`)}
-    ${line("🍽️ Repas à prévoir","",`<span class="row" style="gap:6px"><button data-repas="soir" class="${f.repas==="soir"?"primary":"soft"}">Dîners</button><button data-repas="we" class="${f.repas==="we"?"primary":"soft"}">+ midis week-end</button></span>`)}
-  </section>
-  <section class="card" style="display:grid;gap:10px">
-    <h2 style="font-size:19px">🫙 Toujours au placard</h2><p class="hint">Jamais ajoutés à la liste de courses.</p>
-    <input id="sPlac" value="${esc(f.placard.join(", "))}"><button class="soft" id="savePlac" style="justify-self:start">Enregistrer</button>
-  </section>
-  <section class="card" style="display:grid;gap:6px"><h2 style="font-size:19px">💞 À deux</h2>
-    <p class="hint">Envoyez simplement le lien de l'appli à Aurélie, puis ajoutez-la chacun à l'écran d'accueil de votre téléphone. Vous voyez la même semaine et la même liste, mises à jour toutes les quelques secondes.</p></section>`}
-
 // ================= Feuilles =================
 function openSheet(html){$("#sheetBody").innerHTML=`<div class="grab"></div>`+html;const d=$("#sheet");if(!d.open)d.showModal();$("#sheetBody").parentElement.scrollTop=0}
 function closeSheet(){$("#sheet").close()}
@@ -1022,19 +1066,6 @@ function sheetRecipe(r,dayKey){
     ${st.why.map(w=>`<div class="why ${w[2]>0?"up":"down"}"><span class="emo">${w[0]}</span><span>${esc(w[1])}</span></div>`).join("")}
     <p class="hint">Estimation simple à partir des ingrédients, pas un avis diététique.</p></div>
   ${r.builtin?"":`<button class="ghost" data-editr="${r.id}" style="justify-self:start">✏️ Modifier cette recette</button>`}`);
-}
-function sheetDay(k){
-  const x=slots().find(s=>s.k===k),s=S(),cur=byId(s.plan[k]),lk=!!s.verrous[k];
-  const sorted=all().slice().sort((a,b)=>(isFav(b.id)-isFav(a.id))||(panierHits(b).length-panierHits(a).length)||a.nom.localeCompare(b.nom,"fr"));
-  openSheet(`<div class="row spread"><h2>${JOURS[x.i]}${x.label==="Midi"?" midi":" soir"} · ${dayDate(x.i)}</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div>
-  ${cur&&cur.type?`<button class="rc" data-open="${cur.id}" data-forday="${k}" style="grid-template-columns:120px 1fr;grid-template-rows:auto">
-      <span class="art ${tcls(cur)}" style="height:auto;min-height:100px"><span class="plate">${cur.icone}</span></span><span class="info"><span class="rn">${esc(cur.nom)}</span><span class="hint">📖 Voir la recette ›</span></span></button>`:""}
-  <div class="row"><button class="sun" data-dayrand="${k}">🎲 Autre idée</button>${cur?`<button class="soft" data-daylock="${k}">${lk?"🔓 Libérer":"🔒 Garder"}</button>`:""}
-    <button class="soft" data-setday="${k}" data-rid="restes">🍱 Restes</button>${cur?`<button class="ghost" data-dayclear="${k}">Vider</button>`:""}</div>
-  <div class="lab">Ou choisissez</div>
-  <button class="soft" data-newfor="${k}" style="justify-self:start">✍️ Ajouter ma recette pour ce repas</button>
-  <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(104px,1fr))">${sorted.map(r=>{const h=panierHits(r).length;
-    return `<button class="tile" aria-pressed="${cur&&cur.id===r.id}" data-setday="${k}" data-rid="${r.id}"><span class="plate">${r.icone}</span>${esc(r.nom)}<span class="sub">${isFav(r.id)?"❤️ ":""}${APPS[r.app]?APPS[r.app][1]+" ":""}${r.min} min${h?` · 🧺${h}`:""}</span></button>`}).join("")}</div>`);
 }
 function sheetPlan(rid){const s=S(),r=byId(rid);
   openSheet(`<div class="row spread"><h2>Quel jour pour « ${esc(r.nom)} » ?</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div>
@@ -1079,22 +1110,10 @@ async function saveRecipe(){
   closeSheet();if(!db){toast("Hors connexion : recette non enregistrée");return}
   try{if(draft.id)await db.doc("recettes/"+draft.id).set(data);else{const ref=await db.collection("recettes").add(data);if(draft.forDay)saveSemaine({plan:{...S().plan,[draft.forDay]:ref.id}})}toast(draft.id?"Recette modifiée":"Recette ajoutée 🎉")}catch(e){denied(e)}
 }
-function sheetPick(mode){openSheet(`<div class="row spread"><h2>${mode==="ess"?"Ajouter un essentiel":"Juste pour cette semaine"}</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div>
-  <div class="gsearch search"><input id="pSearch" data-mode="${mode}" placeholder="Chercher ou taper un article…" autocomplete="off"></div><div id="pCat"></div>`);drawPick(mode,"")}
-function drawPick(mode,q){const nq=norm(q),list=CAT.filter(c=>!nq||norm(c.n).includes(nq)),have=new Set((mode==="ess"?F().essentiels:S().extras).map(e=>key(e.n)));
-  let html=nq&&!CAT.some(c=>norm(c.n)===nq)?`<div class="tiles" style="margin-bottom:10px"><button class="tile add" data-pick="${esc(q.trim())}" data-mode="${mode}"><span class="emo">+</span>Ajouter « ${esc(q.trim())} »</button></div>`:"";
-  [7,6,2,3,0,5,4,1].forEach(r=>{const it=list.filter(c=>c.r===r);if(!it.length)return;
-    html+=`<div class="lab" style="margin:14px 0 8px">${RAYONS[r][1]} ${RAYONS[r][0]}</div><div class="tiles">${it.map(c=>`<button class="tile" aria-pressed="${have.has(key(c.n))}" data-pick="${esc(c.n)}" data-mode="${mode}"><span class="emo">${c.e}</span>${esc(c.n)}</button>`).join("")}</div>`});
-  $("#pCat").innerHTML=html}
-function togglePick(name,mode){const c=catFor(name),n=c?c.n:name,k=key(n);
-  if(mode==="ess"){const e=F().essentiels.slice(),ix=e.findIndex(x=>key(x.n)===k);if(ix>=0)e.splice(ix,1);else e.push({n,q:1});saveFoyer({essentiels:e})}
-  else{const x=S().extras.slice(),ix=x.findIndex(e=>key(e.n)===k);if(ix>=0)x.splice(ix,1);else x.push({n,q:c?(c.u==="g"?500:1):1,u:c?c.u:""});saveSemaine({extras:x})}
-  drawPick(mode,$("#pSearch")?.value||"")}
-
 // ================= Connexion au serveur (Google Apps Script) =================
 // ⚠️ Collez ici l'adresse de votre serveur Apps Script, et le même mot de passe que dans Code.gs
 const API_URL = "https://script.google.com/macros/s/AKfycbwXyeIih7aA3IVx7NzQjWKHsn4cKsqpodvhptLrsZfKhkEDbpYScHLdkrDXaHyFiS8Q/exec";
-const CLE = "AL1620";
+const CLE = "CHANGEZ-MOI";
 
 const SYNC = (()=>{
   const LS="menus-du-foyer-etat";
@@ -1155,71 +1174,267 @@ const SYNC = (()=>{
   return{db,configured,pull,syncBadge};
 })();
 
-// ================= Il manque =================
-function mqBlock(ctx){const items=manque.slice().sort((a,b)=>(b.ajoute||"").localeCompare(a.ajoute||""));
-  return `<div class="mqh"><span class="emo">📝</span><div><h2 style="font-size:19px">Il manque quelque chose ?</h2><p class="hint">Notez-le dès que vous le voyez. Aurélie et vous partagez la même liste.</p></div></div>
-  <form class="mqform" data-mqform="${ctx}"><div class="search" style="flex:1"><input id="mq-${ctx}" data-mq="${ctx}" placeholder="ex. café, 2 lait, piles, film alimentaire…" autocomplete="off" enterkeyhint="done"></div><button class="primary" type="submit">Ajouter</button></form>
-  <div class="mqsug" id="mqs-${ctx}">${mqSug("")}</div>
-  ${items.length?`<div class="mqlist">${items.map(m=>`<span class="mqi ${S().coches[key(m.n)]?"done":""}"><span class="emo">${emojiFor(m.n)}</span>${esc(m.n)}${m.q>1?` ×${String(m.q).replace(".",",")}`:""}<button data-mqrm="${m.id}" aria-label="Retirer ${esc(m.n)}">✕</button></span>`).join("")}</div>`:""}`}
-function mqSug(q){const nq=norm(q.replace(/^\d+([.,]\d+)?\s*/,""));const have=new Set(manque.map(m=>key(m.n)));
-  let list=nq?CAT.filter(c=>norm(c.n).includes(nq)).slice(0,8):FREQ.map(catFor).filter(Boolean).filter(c=>!have.has(key(c.n))).slice(0,8);
-  return `${nq?"":`<span class="lab" style="flex-basis:100%">Souvent oubliés</span>`}${list.map(c=>`<button type="button" class="sg" data-mqadd="${esc(c.n)}"><span class="emo">${c.e}</span>${esc(c.n)}</button>`).join("")}`}
-const FREQ=["Café","Papier toilette","Lait","Beurre","Œufs","Pain de mie","Liquide vaisselle","Sacs poubelle","Essuie-tout","Pastilles lave-vaisselle","Éponges","Dentifrice","Confiture","Biscuits","Céréales","Eau gazeuse"];
-async function addManque(txt){
-  txt=String(txt||"").trim();if(!txt)return;
-  const m=txt.match(/^(\d+(?:[.,]\d+)?)\s+(.+)$/);let q=m?+m[1].replace(",","."):1,n=m?m[2]:txt;
-  const c=catFor(n)||CAT.find(x=>norm(x.n).startsWith(norm(n))&&norm(n).length>=3);
-  if(c){n=c.n;if(!m)q=c.u==="g"?500:c.u==="cl"?50:1}else n=n.charAt(0).toUpperCase()+n.slice(1);
-  const ex=manque.find(x=>key(x.n)===key(n));
-  if(!db){toast("Hors connexion : article non enregistré");return}
-  try{if(ex){await db.doc("manque/"+ex.id).update({q:(ex.q||1)+(c&&c.u==="g"&&!m?500:q)});toast(`${n} : quantité augmentée`)}
-    else{await db.collection("manque").add({n,q,u:c?c.u:"",ajoute:new Date().toISOString()});toast(`${n} ajouté à la liste 📝`)}
-    const c2={...S().coches};if(c2[key(n)]){delete c2[key(n)];saveSemaine({coches:c2})}}catch(e){denied(e)}
+function pickBanner(){if(!pickFor)return"";const x=slots().find(s=>s.k===pickFor);return x?`<div class="pickban"><span>📅 Choisissez un plat pour ${JOURS[x.i].toLowerCase()} ${x.label==="Midi"?"midi":"soir"}</span><button class="ghost" id="cancelPick">Annuler</button></div>`:""}
+
+// ================= Le rituel du jeudi =================
+let view="semaine",panSub=0,pickFor=null,pick={lvl:0,top:null,sub:null,mode:"ajout"},cmdIdx=0,lastCopied=null;
+const VIEWS=["semaine","panier","menus","liste","commande","recettes","foyer"];
+const NAVOF={semaine:"semaine",panier:"semaine",menus:"semaine",liste:"liste",commande:"liste",recettes:"recettes",foyer:"semaine"};
+const searchTerm=n=>String(n).replace(/\s*\(.*?\)\s*/g," ").trim().toLowerCase();
+function go(v){location.hash=v}
+function retraitTxt(){return F().retrait||"Vendredi 16h00 · Drive de Salon"}
+
+function etapes(s,L){
+  const left=L.items.filter(i=>!s.coches[i.id]).length;
+  return [
+    {id:"panier",n:"Le panier bio",e:"🧺",when:"Jeudi 18h30",done:!!s.panierOk,info:s.panierOk?(panier().length?`${panier().length} produit${panier().length>1?"s":""} reçu${panier().length>1?"s":""}`:"Pas de panier cette semaine"):"Notez ce que vous avez reçu"},
+    {id:"menus",n:"Les menus",e:"🍽️",when:"Jeudi soir",done:!!s.menusOk,info:s.menusOk?`${Object.keys(s.plan).length} repas prévus`:"L'appli vous propose la semaine"},
+    {id:"liste",n:"La liste de courses",e:"📝",when:"Jeudi soir",done:!!s.listeOk,info:L.items.length?`${L.items.length} articles · ~${eur(L.total)}`:"Se remplit toute seule"},
+    {id:"commande",n:"La commande drive",e:"🛒",when:"Jeudi soir",done:!!s.commandeOk,info:s.commandeOk?"Commande passée":L.items.length?`${L.items.length-left}/${L.items.length} commandés`:"Article par article"},
+    {id:"retrait",n:"Le retrait",e:"🚗",when:retraitTxt(),done:!!s.retraitOk,info:s.retraitOk?"Courses récupérées":"À ne pas oublier"}
+  ];
 }
-function sheetMq(){openSheet(`<div class="row spread"><span></span><button class="ghost" data-close aria-label="Fermer">✕</button></div>${mqBlock("sheet")}`);setTimeout(()=>$("#mq-sheet")?.focus(),60)}
+
+function render(){
+  const s=S(),L=liste(),nav=NAVOF[view];
+  document.querySelectorAll("#tabs a").forEach(a=>a.setAttribute("aria-current",a.dataset.tab===nav?"page":"false"));
+  const left=L.items.filter(i=>!s.coches[i.id]).length,cc=$("#cCount");cc.hidden=!left;cc.textContent=left;
+  $("#fabMq").hidden=view==="commande"||view==="foyer";
+  const d0=parseISO(s.debut),d6=new Date(d0);d6.setDate(d6.getDate()+6);
+  const range=`Semaine du ${d0.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})} au ${d6.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})}`;
+  const T={semaine:["Notre semaine",range],panier:["Le panier bio","Étape 1 sur 4 · jeudi 18h30"],menus:["Les menus","Étape 2 sur 4"],liste:["La liste de courses",`${L.items.length} articles · environ ${eur(L.total)}`],
+    commande:["La commande","Étape 4 sur 4 · retrait "+retraitTxt().toLowerCase()],recettes:["Nos recettes",`${all().length} plats, dont ${all().filter(r=>r.app==="thermomix").length} au Thermomix et ${all().filter(r=>r.app==="airfryer").length} à l'Airfryer`],foyer:["Réglages","Notre foyer"]}[view];
+  const band=$("#band");band.className="band gut"+(view==="semaine"?"":" small");
+  band.innerHTML=`<div class="wrap"><div class="row spread" style="align-items:flex-start;flex-wrap:nowrap"><div><div class="kicker">${T[1]}</div><h1>${T[0]}</h1><span id="sync" class="sync"></span></div>
+    <a class="gear" href="#foyer" aria-label="Réglages">⚙️</a></div></div>`;
+  SYNC.syncBadge();
+  const v=$("#view");v.className=view==="semaine"?"":"flat";
+  if(!loaded&&db){v.innerHTML=`<div class="empty"><span class="emo">🧺</span><strong>Ouverture…</strong>Chargement de votre semaine.</div>`;return}
+  const keepId=document.activeElement?.id,keepVal=document.activeElement?.value;
+  v.innerHTML={semaine:vHome,panier:vPanier,menus:vMenus,liste:vListe,commande:vCommande,recettes:()=>pickBanner()+vRecettes(),foyer:vFoyer}[view](s,L);
+  if(keepId==="libSearch"){const i=$("#libSearch");if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}}
+}
+const back=`<button class="ghost back" data-go="semaine">‹ Notre semaine</button>`;
+
+// ---------- Accueil ----------
+function vHome(s,L){
+  const st=etapes(s,L),cur=st.findIndex(e=>!e.done),ti=todayIdx();
+  const nouvelle=ti>=7||ti>=6&&s.retraitOk;
+  const k="d"+Math.min(Math.max(ti,0),6)+"s",r=byId(s.plan[k]);
+  return `
+  ${nouvelle?`<section class="card newweek"><span class="emo">🌱</span><div><h2 style="font-size:19px">C'est reparti pour une semaine</h2><p class="hint">On vide le panier et les menus. Ce qui a été noté et pas commandé reste sur la liste.</p></div><button class="sun" id="newWeek">Commencer</button></section>`:""}
+  <section class="card ritual">
+    <div class="lab">Le rituel du jeudi</div>
+    <ol class="steps2">${st.map((e,i)=>`<li class="${e.done?"done":""} ${i===cur?"cur":""}">
+      <button class="stp" ${e.id==="retrait"?(s.commandeOk&&!s.retraitOk?`id="retraitOk"`:`data-go="semaine"`):`data-go="${e.id}"`}>
+        <span class="si emo">${e.done?"✓":e.e}</span><span class="st"><b>${e.n}</b><small>${esc(e.when)} · ${esc(e.info)}</small></span>
+        <span class="sa">${e.id==="retrait"?(s.commandeOk&&!s.retraitOk?"C'est fait":""):i===cur?"Commencer ›":"›"}</span></button></li>`).join("")}</ol>
+    ${cur>=0&&cur<4?`<button class="primary big" data-go="${st[cur].id}">${st[cur].e} ${["Noter mon panier","Choisir les menus","Vérifier la liste","Passer la commande"][cur]}</button>`:""}
+    ${cur===4?`<p class="okline">🎉 Commande passée. Rendez-vous ${esc(retraitTxt().toLowerCase())}.</p>`:""}
+  </section>
+  ${r?`<section class="card tonight"><span class="plate">${r.icone}</span><div><div class="when">${ti>=0&&ti<=6?"Ce soir":"Jeudi soir"}</div><h3>${esc(r.nom)}</h3><div class="chips">${chips(r,false)}</div></div>
+    <div class="acts">${r.type?`<button class="soft" data-open="${r.id}">📖 La recette</button>`:""}</div></section>`:""}
+  ${Object.keys(s.plan).length?`<section style="display:grid;gap:10px"><div class="row spread"><h2>Au menu cette semaine</h2><button class="ghost seeall" data-go="menus">Modifier ›</button></div>
+    <div class="strip">${slots().map(x=>{const rr=byId(s.plan[x.k]);return `<button class="mini-day ${tcls(rr)}" ${rr&&rr.type?`data-open="${rr.id}"`:`data-go="menus"`}><small>${JOURS[x.i].slice(0,3)}${x.label==="Midi"?" midi":""}</small><span class="plate">${rr?rr.icone:"+"}</span><span class="mn">${rr?esc(rr.nom):"—"}</span></button>`}).join("")}</div></section>`:""}`;
+}
+
+// ---------- Étape 1 : panier ----------
+function vPanier(s,L){
+  const subs=TREE[0].subs,sub=subs[panSub]||subs[0],pan=panier();
+  const tile=n=>{const c=catFor(n),p=pan.find(x=>key(x.n)===key(n)),u=L.use[key(n)];
+    if(!p)return `<div class="pt"><button class="main" data-pan="${esc(n)}"><span class="emo">${c?c.e:"🧺"}</span>${esc(n)}</button></div>`;
+    const ratio=p.q&&u?Math.min(1,u.besoin/p.q):0;
+    return `<div class="pt on"><button class="main" data-pan="${esc(n)}" aria-label="Retirer ${esc(n)}"><span class="emo">${c?c.e:"🧺"}</span>${esc(n)}</button>
+      ${p.q!=null?`<div class="qty"><button data-panq="${esc(n)}:-1" aria-label="Moins">−</button><b>${esc(fmtQ(p.q,c?.u))}</b><button data-panq="${esc(n)}:1" aria-label="Plus">+</button></div>`:""}
+      ${p.q?`<div class="use"><i class="${ratio>=1?"full":""}" style="width:${Math.round(ratio*100)}%"></i></div>`:""}</div>`};
+  return `${back}
+  <section class="card" style="display:grid;gap:12px">
+    <div class="row spread"><div><h2 style="font-size:20px">Qu'y a-t-il dans le panier ?</h2><p class="hint">Touchez ce que vous avez reçu, puis ajustez la quantité.</p></div>
+      <span class="stepper" title="Œufs du panier"><button data-step="oeufs:-1" aria-label="Moins d'œufs">−</button><b>🥚 ${s.oeufsPanier}</b><button data-step="oeufs:1" aria-label="Plus d'œufs">+</button></span></div>
+    ${pan.length?`<div class="recu">${pan.map(p=>`<span class="chip pb"><span class="emo">${emojiFor(p.n)}</span>${esc(p.n)}${p.q!=null?" · "+esc(fmtQ(p.q,catFor(p.n)?.u)):""}</span>`).join("")}</div>`:""}
+  </section>
+  <div class="subtabs">${subs.map((x,i)=>{const n=pan.filter(p=>x.items.some(it=>key(it)===key(p.n))).length;return `<button aria-pressed="${i===panSub}" data-psub="${i}"><span class="emo">${x.e}</span>${x.n}${n?` <b>${n}</b>`:""}</button>`}).join("")}</div>
+  <div class="ptiles">${sub.items.map(tile).join("")}${panSub===0?`<div class="pt add"><button class="main" id="panOther"><span class="emo">+</span>Autre</button></div>`:""}</div>
+  <div class="ctabar"><button class="ghost" id="noPanier">Pas de panier cette semaine</button><button class="primary big" id="panierOk">Suivant : les menus ›</button></div>`;
+}
+
+// ---------- Étape 2 : menus ----------
+function ideasFor(k,n=3){const cnt={},s=S();for(let i=0;i<24;i++){const id=genere(k)[k];if(id&&id!==s.plan[k])cnt[id]=(cnt[id]||0)+1}
+  return Object.entries(cnt).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([id])=>byId(id)).filter(Boolean)}
+function vMenus(s,L){
+  const pan=panier(),unused=pan.filter(p=>!(L.use[key(p.n)]?.besoin>0));
+  return `${back}
+  ${pan.length?`<section class="card" style="display:grid;gap:8px"><div class="lab">🧺 Votre panier dans les menus</div><div class="recu">${pan.map(p=>{const u=L.use[key(p.n)];const ok=u&&u.besoin>0;return `<span class="chip ${ok?"tm":"warn"}"><span class="emo">${emojiFor(p.n)}</span>${esc(p.n)} ${ok?"✓":"· pas encore utilisé"}</span>`}).join("")}</div>
+    ${unused.length?`<p class="hint">Touchez « Autres idées » ou changez un repas pour utiliser ${esc(unused.map(p=>p.n.toLowerCase()).join(", "))}.</p>`:`<p class="hint">Tout le panier est utilisé 👍</p>`}</section>`:""}
+  <section style="display:grid;gap:10px">
+    <div class="row spread"><h2>${Object.keys(s.plan).length?"Nos repas":"Les repas"}</h2><button class="soft" id="gen">🔄 Autres idées</button></div>
+    <div class="mlist">${slots().map(x=>{const r=byId(s.plan[x.k]),h=r&&r.type?panierHits(r):[],lk=s.verrous[x.k];
+      return `<button class="mrow ${tcls(r)}" data-day="${x.k}"><span class="md"><b>${JOURS[x.i].slice(0,3)}.</b><small>${x.label==="Midi"?"midi":"soir"}</small></span>
+        <span class="plate ${r?"":"empty"}">${r?r.icone:"+"}</span>
+        <span class="mt"><b>${r?esc(r.nom):"Choisir un plat"}</b>${r&&r.type?`<small>⏱ ${r.min} min${APPS[r.app]&&APPS[r.app][2]?" · "+APPS[r.app][1]+" "+APPS[r.app][0]:""}${h.length?" · 🧺 "+esc(h.slice(0,2).join(", ").toLowerCase()):""}</small>`:""}</span>
+        <span class="mx">${lk?"🔒":"›"}</span></button>`}).join("")}</div>
+    <p class="hint">Touchez un repas pour voir 3 autres idées. 🔒 garde un plat quand vous demandez d'autres idées.</p>
+  </section>
+  <div class="ctabar"><span></span><button class="primary big" id="menusOk">Ces menus me vont ›</button></div>`;
+}
+function sheetDay(k){
+  const x=slots().find(s=>s.k===k),s=S(),cur=byId(s.plan[k]),lk=!!s.verrous[k],ideas=ideasFor(k,3);
+  openSheet(`<div class="row spread"><h2>${JOURS[x.i]} ${x.label==="Midi"?"midi":"soir"}</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div>
+  ${cur&&cur.type?`<div class="lab">Prévu</div><button class="rc" data-open="${cur.id}" data-forday="${k}" style="grid-template-columns:110px 1fr;grid-template-rows:auto">
+      <span class="art ${tcls(cur)}" style="height:auto;min-height:96px"><span class="plate">${cur.icone}</span></span><span class="info"><span class="rn">${esc(cur.nom)}</span><span class="hint">📖 Voir la recette</span></span></button>
+    <button class="soft" data-daylock="${k}">${lk?"🔓 Ne plus garder ce plat":"🔒 Garder ce plat"}</button>`:""}
+  <div class="lab">Ou plutôt…</div>
+  <div class="ideas">${ideas.map(r=>{const h=panierHits(r);return `<button class="rc" data-setday="${k}" data-rid="${r.id}"><span class="art ${tcls(r)}"><span class="plate">${r.icone}</span></span>
+    <span class="info"><span class="rn">${esc(r.nom)}</span><span class="meta"><span>⏱ ${r.min} min</span>${h.length?`<span>🧺 ${h.length}</span>`:""}<span class="gd ${GRADE[grade(r)][1]}">${grade(r)}</span></span></span></button>`}).join("")}</div>
+  <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <button class="soft" data-setday="${k}" data-rid="restes">🍱 Restes / soir libre</button><button class="soft" data-pickfrom="${k}">📖 Toutes les recettes</button></div>
+  ${cur?`<button class="ghost" data-dayclear="${k}" style="justify-self:center">Ne rien prévoir</button>`:""}`);
+}
+
+// ---------- Étape 3 : liste ----------
+function stepOf(u){return u==="g"?100:u==="cl"?10:(u==="kg"||u==="l")?.5:1}
+function vListe(s,L){
+  const groups=TOPS.map(([id,n,e])=>({id,n,e,it:L.items.filter(i=>i.top===id)})).filter(g=>g.it.length);
+  return `
+  <section class="card listhead">
+    <div><h2 style="font-size:20px">${L.items.length?`${L.items.length} articles à acheter`:"La liste est vide"}</h2>
+      <p class="hint">${L.items.length?`Environ ${eur(L.total)} · budget ${F().budget} €`:"Choisissez les menus : les ingrédients arrivent ici tout seuls."}</p></div>
+    <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button class="sun big2" id="addProd">➕ Ajouter</button><button class="primary big2" data-go="commande" ${L.items.length?"":"disabled"}>🛒 Commander</button></div>
+  </section>
+  ${groups.map(g=>`<section class="rayon"><h3><span class="emo">${g.e}</span>${g.n}<small>${g.it.length}</small></h3>${g.it.map(i=>`
+    <div class="item ${s.coches[i.id]?"done":""}"><span class="ib">${emojiFor(i.n)}</span>
+      <div class="n">${esc(i.n)}<span class="src">${esc(i.why.length>46?i.why.slice(0,43)+"…":i.why)}${i.note?" · "+esc(i.note):""}</span></div>
+      <span class="stepper"><button data-q="${esc(i.id)}:-1:${esc(i.u||"")}:${i.q??1}" aria-label="Moins de ${esc(i.n)}">−</button><b>${esc(fmtQ(i.q??1,i.u))}</b><button data-q="${esc(i.id)}:1:${esc(i.u||"")}:${i.q??1}" aria-label="Plus de ${esc(i.n)}">+</button></span></div>`).join("")}</section>`).join("")}
+  ${L.retires.length?`<p class="hint">Retirés : ${esc(L.retires.map(r=>r.n).join(", "))} · <button class="ghost link" id="restore">Remettre</button></p>`:""}
+  ${L.skip.length?`<p class="hint">🏡 Déjà à la maison (panier bio ou placard) : ${esc([...new Set(L.skip.map(x=>x.toLowerCase()))].join(", "))}</p>`:""}
+  ${L.items.length?`<div class="ctabar"><span></span><button class="primary big" id="listeOk">La liste est prête ›</button></div>`:""}`;
+}
+
+// ---------- Ajouter un produit : catégorie → sous-catégorie → produit ----------
+function sheetAdd(mode){pick={lvl:0,top:null,sub:null,mode:mode||"ajout",q:""};drawAdd()}
+function haveQty(n){const k=key(n);if(pick.mode==="ess"){const e=F().essentiels.find(x=>key(x.n)===k);return e?e.q:0}const m=manque.find(x=>key(x.n)===k);return m?m.q:0}
+function prodTile(n){const c=catFor(n),q=haveQty(n);return `<button class="tile ${q?"has":""}" data-addp="${esc(n)}"><span class="emo">${c?c.e:"🛒"}</span>${esc(n)}${q?`<span class="badge">${String(q).replace(".",",")}${c&&c.u==="g"?" g":""}</span>`:""}</button>`}
+function drawAdd(){
+  const T=pick.top!=null?TREE[pick.top]:null,Sb=T&&pick.sub!=null?T.subs[pick.sub]:null;
+  const title=pick.mode==="ess"?"Mes essentiels":"Ajouter à la liste";
+  const crumbs=`<div class="crumbs"><button class="ghost" data-lvl="0">${pick.mode==="ess"?"⭐":"🏪"} Rayons</button>${T?`<span>›</span><button class="ghost" data-lvl="1">${T.e} ${T.n}</button>`:""}${Sb?`<span>›</span><b>${Sb.e} ${Sb.n}</b>`:""}</div>`;
+  let body="";const q=norm(pick.q||"");
+  if(q){const list=CAT.filter(c=>norm(c.n).includes(q)).slice(0,12);
+    body=`<div class="tiles">${list.map(c=>prodTile(c.n)).join("")}<button class="tile add" data-addp="${esc(pick.q.trim())}" data-free="1"><span class="emo">+</span>« ${esc(pick.q.trim())} »</button></div>`}
+  else if(!T)body=`<div class="bigcats">${TREE.map((t,i)=>`<button class="bc" data-top="${i}"><span class="emo">${t.e}</span>${t.n}</button>`).join("")}</div>`;
+  else if(!Sb)body=`<div class="bigcats subs">${T.subs.map((x,i)=>`<button class="bc" data-sub="${i}"><span class="emo">${x.e}</span>${x.n}<small>${x.items.length} produits</small></button>`).join("")}</div>`;
+  else body=`<div class="tiles">${Sb.items.map(prodTile).join("")}</div><p class="hint" style="text-align:center">Touchez plusieurs fois pour augmenter la quantité.</p>`;
+  openSheet(`<div class="row spread"><h2>${title}</h2><button class="primary" data-close>Terminé</button></div>
+  <div class="search"><input id="addSearch" placeholder="Ou tapez : café, piles, papier alu…" value="${esc(pick.q||"")}" autocomplete="off"></div>
+  ${q?"":crumbs}${body}`);
+  if(pick.focus){const i=$("#addSearch");i.focus();i.setSelectionRange(i.value.length,i.value.length);pick.focus=false}
+}
+async function addProduct(n,free){
+  const c=free?null:catFor(n),name=c?c.n:n.charAt(0).toUpperCase()+n.slice(1),k=key(name),step=c?(c.u==="g"?500:c.u==="cl"?50:1):1;
+  if(pick.mode==="ess"){const e=F().essentiels.map(x=>({...x})),ex=e.find(x=>key(x.n)===k);if(ex)ex.q+=1;else e.push({n:name,q:1});await saveFoyer({essentiels:e});toast(`⭐ ${name}`);return}
+  const ex=manque.find(x=>key(x.n)===k);
+  try{if(ex)await db.doc("manque/"+ex.id).update({q:(ex.q||0)+step});else await db.collection("manque").add({n:name,q:step,u:c?c.u:"",ajoute:new Date().toISOString()});
+    const s=S(),qte={...(s.qte||{})},co={...s.coches};let ch=false;if(k in qte){delete qte[k];ch=true}if(co[k]){delete co[k];ch=true}if(ch)saveSemaine({qte,coches:co});
+    toast(`✓ ${name} ajouté`)}catch(e){denied(e)}
+}
+
+// ---------- Étape 4 : commande ----------
+function vCommande(s,L){
+  const left=L.items.filter(i=>!s.coches[i.id]),tot=L.items.length,done=tot-left.length;
+  if(!tot)return `${back}<div class="empty"><span class="emo">🛒</span><strong>Rien à commander</strong>Préparez d'abord la liste.</div>`;
+  if(!left.length)return `${back}<section class="card finish"><span class="emo">🎉</span><h2>Commande passée !</h2><p class="hint">Il ne reste qu'à valider le panier sur le site du drive.</p>
+    <div class="rdv"><span class="emo">🚗</span><div><b>${esc(retraitTxt())}</b><small>Retrait des courses</small></div></div>
+    <button class="primary big" id="commandeOk">C'est fait</button><button class="ghost" id="uncheck">Tout recommencer</button></section>`;
+  if(cmdIdx>=left.length)cmdIdx=0;const it=left[cmdIdx],term=searchTerm(it.n);
+  return `${back}
+  <section class="card cmd">
+    <div class="row spread"><span class="lab">Article ${done+1} sur ${tot}</span><span class="hint">${esc(TOPS.find(t=>t[0]===it.top)?.[1]||"")}</span></div>
+    <div class="progress"><i style="width:${Math.round(done/tot*100)}%"></i></div>
+    <div class="cmdcard"><span class="bigemo emo">${emojiFor(it.n)}</span><h2>${esc(it.n)}</h2><p class="qbig">${esc(fmtQ(it.q??1,it.u))}</p></div>
+    <button class="soft big ${lastCopied===it.id?"copied":""}" data-copy="${esc(it.id)}" data-term="${esc(term)}">${lastCopied===it.id?"✓ Copié, collez-le dans le drive":`📋 Copier « ${esc(term)} »`}</button>
+    <button class="primary big" data-done="${esc(it.id)}">✓ Commandé, suivant</button>
+    <button class="ghost" id="skipItem">Passer pour l'instant</button>
+  </section>
+  <details class="card"><summary class="lab" style="cursor:pointer">Voir toute la liste (${done}/${tot} commandés)</summary>
+    <div style="display:grid;gap:4px;margin-top:10px">${L.items.map(i=>`<label class="ck2"><input type="checkbox" data-chk2="${esc(i.id)}" ${s.coches[i.id]?"checked":""}><span class="emo">${emojiFor(i.n)}</span>${esc(i.n)} <small>${esc(fmtQ(i.q??1,i.u))}</small></label>`).join("")}</div></details>`;
+}
+
+// ---------- Réglages ----------
+function vFoyer(){const f=F(),s=S();
+  const line=(t,h,ctrl)=>`<div class="row spread" style="padding:12px 0;border-top:1px solid var(--line)"><span><b>${t}</b>${h?`<br><span class="hint">${h}</span>`:""}</span>${ctrl}</div>`;
+  return `<section class="card" style="display:grid;gap:2px;padding-block:8px">
+    ${line("👨‍👩‍👧‍👦 Personnes à table","Les quantités s'adaptent.",`<span class="stepper"><button data-step="pers:-1">−</button><b>${f.personnes}</b><button data-step="pers:1">+</button></span>`)}
+    ${line("💶 Budget par semaine","",`<span class="stepper"><button data-step="budget:-10">−</button><b>${f.budget} €</b><button data-step="budget:10">+</button></span>`)}
+    ${line("🍽️ Repas à prévoir","",`<span class="row" style="gap:6px"><button data-repas="soir" class="${f.repas==="soir"?"primary":"soft"}">Dîners</button><button data-repas="we" class="${f.repas==="we"?"primary":"soft"}">+ midis week-end</button></span>`)}
+  </section>
+  <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">⭐ Mes essentiels</h2><p class="hint">Ajoutés automatiquement à chaque liste. 0 pour sauter une semaine.</p>
+    <div class="ess">${f.essentiels.map((e,ix)=>`<div class="essi ${e.q?"":"zero"}"><span class="emo">${emojiFor(e.n)}</span><div><div class="nm">${esc(e.n)}</div><span class="stepper"><button data-ess="${ix}:-1">−</button><b>${e.q}</b><button data-ess="${ix}:1">+</button></span></div></div>`).join("")}</div>
+    <button class="soft" id="essAdd" style="justify-self:start">➕ Ajouter un essentiel</button></section>
+  <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">🚗 Retrait des courses</h2>
+    <input id="sRetrait" value="${esc(retraitTxt())}"><button class="soft" id="saveRetrait" style="justify-self:start">Enregistrer</button></section>
+  <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">🫙 Toujours au placard</h2><p class="hint">Jamais ajoutés automatiquement à la liste.</p>
+    <input id="sPlac" value="${esc(f.placard.join(", "))}"><button class="soft" id="savePlac" style="justify-self:start">Enregistrer</button></section>
+  <section class="card" style="display:grid;gap:6px"><h2 style="font-size:19px">💞 À deux</h2><p class="hint">Envoyez le lien de l'appli à Aurélie et ajoutez-la à l'écran d'accueil de vos téléphones. Vous voyez la même semaine et la même liste.</p></section>`}
+
+function newWeek(){const s=S(),nd=parseISO(s.debut);while(nd<=lastThursday()&&iso(nd)!==iso(lastThursday()))nd.setDate(nd.getDate()+7);
+  if(iso(nd)===s.debut)nd.setDate(nd.getDate()+7);
+  const recent=[...Object.values(s.plan),...s.recent].filter(x=>x&&x!=="restes").slice(0,14);
+  manque.filter(m=>s.coches[key(m.n)]).forEach(m=>db&&db.doc("manque/"+m.id).delete().catch(()=>{}));
+  saveSemaine({debut:iso(nd),panier:[],plan:{},verrous:{},coches:{},qte:{},extras:[],recent,panierOk:false,menusOk:false,listeOk:false,commandeOk:false,retraitOk:false});
+  cmdIdx=0;toast("Nouvelle semaine prête 🌱");go("semaine")}
 
 // ================= Événements =================
 document.addEventListener("click",async e=>{
-  const t=e.target.closest("button");if(!t)return;const d=t.dataset,s=S();
-  if(d.close!=null){closeSheet();return}
+  const t=e.target.closest("button,a[data-go]");if(!t)return;const d=t.dataset,s=S();
+  if(d.close!=null){closeSheet();if(pickFor===null&&view==="liste")render();return}
+  if(d.go){e.preventDefault();go(d.go);return}
+  // panier
+  if(d.psub!=null){panSub=+d.psub;render();return}
   if(d.pan!=null){const k=key(d.pan),p=panier(),ix=p.findIndex(x=>key(x.n)===k);if(ix>=0)p.splice(ix,1);else p.push({n:d.pan,q:panDefault(d.pan)});saveSemaine({panier:p});return}
-  if(d.panq){const[n,dl]=d.panq.split(":");const p=panier(),it=p.find(x=>key(x.n)===key(n));if(!it)return;
-    it.q=Math.round(((it.q||0)+(+dl)*panStep(n))*10)/10;if(it.q<=0)p.splice(p.indexOf(it),1);saveSemaine({panier:p});return}
-  if(t.id==="vegAll"){showAllVeg=true;render();return}
+  if(d.panq){const[n,dl]=d.panq.split(":");const p=panier(),it=p.find(x=>key(x.n)===key(n));if(!it)return;it.q=Math.round(((it.q||0)+(+dl)*panStep(n))*10)/10;if(it.q<=0)p.splice(p.indexOf(it),1);saveSemaine({panier:p});return}
   if(t.id==="panOther"){openSheet(`<div class="row spread"><h2>Autre produit du panier</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div><div class="row" style="flex-wrap:nowrap"><input id="panIn" placeholder="ex. topinambours"><button class="primary" id="panAdd">Ajouter</button></div>`);setTimeout(()=>$("#panIn")?.focus(),50);return}
   if(t.id==="panAdd"){const v=$("#panIn").value.trim();if(v){const p=panier();p.push({n:v,q:panDefault(v)});saveSemaine({panier:p})}closeSheet();return}
-  if(t.id==="gen"){await saveSemaine({plan:genere()});toast("Semaine proposée ✨");return}
+  if(t.id==="noPanier"){await saveSemaine({panier:[],panierOk:true,plan:s.menusOk?s.plan:genere()});go("menus");return}
+  if(t.id==="panierOk"){await saveSemaine({panierOk:true,plan:s.menusOk?s.plan:genere()});go("menus");return}
+  // menus
+  if(t.id==="gen"){await saveSemaine({plan:genere()});toast("Nouvelles idées ✨");return}
+  if(t.id==="menusOk"){await saveSemaine({menusOk:true,panierOk:true});go("liste");return}
   if(d.day){sheetDay(d.day);return}
-  if(d.open){sheetRecipe(byId(d.open),d.forday||null);return}
-  if(d.setday||d.pickday){const k=d.setday||d.pickday;saveSemaine({plan:{...s.plan,[k]:d.rid}});closeSheet();if(d.pickday)toast("Ajouté au menu 📅");return}
-  if(d.plan){sheetPlan(d.plan);return}
-  if(d.dayrand){const p=genere(d.dayrand);saveSemaine({plan:{...s.plan,[d.dayrand]:p[d.dayrand]}});sheetDay(d.dayrand);return}
+  if(d.setday||d.pickday){const k=d.setday||d.pickday;saveSemaine({plan:{...s.plan,[k]:d.rid}});closeSheet();if(pickFor){pickFor=null;go("menus")}else if(d.pickday)toast("Ajouté au menu 📅");return}
   if(d.daylock){saveSemaine({verrous:{...s.verrous,[d.daylock]:!s.verrous[d.daylock]}});closeSheet();return}
   if(d.dayclear){const p={...s.plan};delete p[d.dayclear];saveSemaine({plan:p});closeSheet();return}
-  if(t.id==="newWeek"){if(d.confirm!=="1"){d.confirm="1";t.textContent="Confirmer : repartir à zéro";setTimeout(()=>{if(t.isConnected){d.confirm="";t.textContent="Passer à la semaine suivante"}},4000);return}
-    const nd=parseISO(s.debut);nd.setDate(nd.getDate()+7);const recent=[...Object.values(s.plan),...s.recent].filter(x=>x&&x!=="restes").slice(0,14);
-    manque.filter(m=>s.coches[key(m.n)]).forEach(m=>db&&db.doc("manque/"+m.id).delete().catch(()=>{}));
-    saveSemaine({debut:iso(nd),panier:[],plan:{},verrous:{},coches:{},extras:(s.extras||[]).filter(e=>!s.coches[key(e.n)]),recent});toast("Nouvelle semaine prête");return}
+  if(d.pickfrom){pickFor=d.pickfrom;closeSheet();go("recettes");return}
+  if(t.id==="cancelPick"){pickFor=null;go("menus");return}
+  if(d.open){sheetRecipe(byId(d.open),d.forday||pickFor||null);return}
+  if(d.plan){sheetPlan(d.plan);return}
   if(d.fav){const fv=F().favoris.slice(),ix=fv.indexOf(d.fav);if(ix>=0)fv.splice(ix,1);else fv.push(d.fav);await saveFoyer({favoris:fv});t.textContent=ix>=0?"🤍 Favori":"❤️ Favori";return}
+  // liste
+  if(t.id==="addProd"||t.id==="fabMq"){sheetAdd("ajout");return}
+  if(d.top!=null){pick.top=+d.top;pick.lvl=1;drawAdd();return}
+  if(d.sub!=null){pick.sub=+d.sub;pick.lvl=2;drawAdd();return}
+  if(d.lvl!=null){if(d.lvl==="0"){pick.top=null;pick.sub=null}else pick.sub=null;drawAdd();return}
+  if(d.addp){await addProduct(d.addp,!!d.free);if(d.free){pick.q=""}drawAdd();return}
+  if(d.q){const[id,dl,u,cur]=d.q.split(":");const qte={...(s.qte||{})};let v=Math.round(((+cur)+(+dl)*stepOf(u))*100)/100;if(v<0)v=0;qte[id]=v;
+    if(v<=0){const m=manque.find(x=>key(x.n)===id);if(m&&db)db.doc("manque/"+m.id).delete().catch(()=>{})}saveSemaine({qte});if(v<=0)toast("Retiré de la liste");return}
+  if(t.id==="restore"){const qte={...(s.qte||{})};Object.keys(qte).forEach(k=>{if(qte[k]<=0)delete qte[k]});saveSemaine({qte});return}
+  if(t.id==="listeOk"){await saveSemaine({listeOk:true});go("commande");return}
+  // commande
+  if(d.copy){try{await navigator.clipboard.writeText(d.term);lastCopied=d.copy;toast(`« ${d.term} » copié`)}catch(_){toast("Copie impossible : le mot à chercher est « "+d.term+" »")}render();return}
+  if(d.done){lastCopied=null;await saveSemaine({coches:{...s.coches,[d.done]:true}});return}
+  if(t.id==="skipItem"){cmdIdx++;lastCopied=null;render();return}
+  if(t.id==="commandeOk"){await saveSemaine({commandeOk:true,listeOk:true});go("semaine");toast("Bravo ! Retrait "+retraitTxt().toLowerCase());return}
+  if(t.id==="uncheck"){saveSemaine({coches:{},commandeOk:false});return}
+  if(t.id==="retraitOk"){saveSemaine({retraitOk:true});toast("Courses récupérées 🎉");return}
+  if(t.id==="newWeek"){newWeek();return}
+  // recettes
   if(d.coll){coll=d.coll;tri="reco";render();window.scrollTo(0,0);return}
   if(t.id==="collBack"){coll=null;fac={};recherche="";render();window.scrollTo(0,0);return}
   if(d.tri){tri=d.tri;render();return}
   if(t.id==="openFac"){sheetFac();return}
   if(d.fac){const[k,v]=d.fac.split(":");fac[k]=fac[k]===v?null:v;render();sheetFac();return}
   if(t.id==="facReset"){fac={};render();sheetFac();return}
-  if(d.copy){lastCopied=d.copy;try{await navigator.clipboard.writeText(d.term);toast(`« ${d.term} » copié`)}catch(_){toast("Copie refusée par le navigateur")}render();return}
-  if(d.chk){const c={...s.coches};if(c[d.chk])delete c[d.chk];else c[d.chk]=true;saveSemaine({coches:c});return}
-  if(d.ess){const[ix,dl]=d.ess.split(":").map(Number);const es=F().essentiels.map(x=>({...x}));es[ix].q=Math.max(0,es[ix].q+dl);saveFoyer({essentiels:es});return}
-  if(t.id==="essAdd"){sheetPick("ess");return}
-  if(d.mqadd){await addManque(d.mqadd);if($("#sheet").open&&$("#mq-sheet"))sheetMq();return}
-  if(d.mqrm){if(db)try{await db.doc("manque/"+d.mqrm).delete()}catch(err){denied(err)}if($("#sheet").open&&$("#mq-sheet"))sheetMq();return}
-  if(t.id==="fabMq"){sheetMq();return}
-  if(d.pick){togglePick(d.pick,d.mode);return}
-  if(t.id==="copy"){const L=liste();const txt=RAYONS.map(([n],r)=>{const it=L.items.filter(i=>i.r===r&&!s.coches[i.id]);return it.length?n.toUpperCase()+"\n"+it.map(i=>"- "+i.n+(fmtQ(i.q,i.u)?" ("+fmtQ(i.q,i.u)+")":"")).join("\n"):""}).filter(Boolean).join("\n\n");
-    try{await navigator.clipboard.writeText(txt);toast("Liste copiée 📋")}catch(_){toast("Copie refusée par le navigateur")}return}
-  if(t.id==="uncheck"){saveSemaine({coches:{}});return}
   if(t.id==="newR"||t.id==="newR2"){sheetEdit(null);return}
-  if(d.newfor){sheetEdit(null);draft.forDay=d.newfor;return}
   if(d.editr){sheetEdit(byId(d.editr));return}
   if(d.ricon){draft.icone=d.ricon;drawIcons();return}
   if(d.rtype){draft.type=d.rtype;drawSeg();return}
@@ -1231,37 +1446,43 @@ document.addEventListener("click",async e=>{
   if(d.irm!=null){draft.ingredients.splice(+d.irm,1);drawSel();drawCat($("#rSearch").value);return}
   if(t.id==="rSave"){saveRecipe();return}
   if(t.id==="rDel"){if(d.confirm!=="1"){d.confirm="1";t.textContent="Confirmer la suppression";return}closeSheet();if(db&&draft.id)try{await db.doc("recettes/"+draft.id).delete();toast("Recette supprimée")}catch(err){denied(err)}return}
+  // réglages
   if(d.step){const[w,dl]=d.step.split(":");const f=F();
     if(w==="pers")saveFoyer({personnes:Math.min(12,Math.max(1,f.personnes+(+dl)))});else if(w==="budget")saveFoyer({budget:Math.max(20,f.budget+(+dl))});else saveSemaine({oeufsPanier:Math.max(0,s.oeufsPanier+(+dl))});return}
   if(d.repas){saveFoyer({repas:d.repas});return}
+  if(d.ess){const[ix,dl]=d.ess.split(":").map(Number);const es=F().essentiels.map(x=>({...x}));es[ix].q=Math.max(0,es[ix].q+dl);saveFoyer({essentiels:es});return}
+  if(t.id==="essAdd"){sheetAdd("ess");return}
   if(t.id==="savePlac"){saveFoyer({placard:$("#sPlac").value.split(",").map(x=>x.trim()).filter(Boolean)},"Placard enregistré");return}
+  if(t.id==="saveRetrait"){saveFoyer({retrait:$("#sRetrait").value.trim()||"Vendredi 16h00 · Drive de Salon"},"Enregistré");return}
 });
 document.addEventListener("change",e=>{const id=e.target.dataset?.chk2;if(id==null)return;const c={...S().coches};if(e.target.checked)c[id]=true;else delete c[id];saveSemaine({coches:c})});
-document.addEventListener("submit",async e=>{const f=e.target.closest("[data-mqform]");if(!f)return;e.preventDefault();const ctx=f.dataset.mqform,inp=$("#mq-"+ctx),v=inp.value;inp.value="";await addManque(v);if(ctx==="sheet")sheetMq();else setTimeout(()=>$("#mq-tab")?.focus(),30)});
 document.addEventListener("input",e=>{const t=e.target,d=t.dataset;
-  if(d.mq){const box=$("#mqs-"+d.mq);if(box)box.innerHTML=mqSug(t.value)}
   if(t.id==="libSearch"){recherche=t.value;render()}
+  if(t.id==="addSearch"){pick.q=t.value;pick.focus=true;drawAdd()}
   if(t.id==="rSearch")drawCat(t.value);
-  if(t.id==="pSearch")drawPick(d.mode,t.value);
   if(d.iq!=null)draft.ingredients[+d.iq].q=t.value===""?null:+t.value});
 document.addEventListener("keydown",e=>{if(e.key!=="Enter")return;const t=e.target,v=t.value?.trim();
   if(t.id==="panIn"){e.preventDefault();$("#panAdd").click()}
-  if(t.id==="rSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n).includes(norm(v)));toggleIng(c?c.n:v);t.value="";drawCat("")}
-  if(t.id==="pSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n).includes(norm(v)));togglePick(c?c.n:v,t.dataset.mode);t.value="";drawPick(t.dataset.mode,"")}});
+  if(t.id==="addSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n)===norm(v))||CAT.find(c=>norm(c.n).includes(norm(v)));addProduct(c?c.n:v,!c).then(()=>{pick.q="";pick.focus=true;drawAdd()})}
+  if(t.id==="rSearch"&&v){e.preventDefault();const c=CAT.find(c=>norm(c.n).includes(norm(v)));toggleIng(c?c.n:v);t.value="";drawCat("")}});
+$("#sheet").addEventListener("close",()=>{if(view==="liste"||view==="foyer")render()});
 
-function route(){const h=location.hash.slice(1);tab=["semaine","courses","recettes","foyer"].includes(h)?h:"semaine";render();window.scrollTo(0,0)}
+function route(){const h=location.hash.slice(1);view=VIEWS.includes(h)?h:"semaine";if(view!=="recettes")pickFor=pickFor&&view==="recettes"?pickFor:pickFor;
+  if(view==="menus"&&loaded&&!Object.keys(S().plan).length)saveSemaine({plan:genere()});
+  render();window.scrollTo(0,0)}
 window.addEventListener("hashchange",route);
 route();
 (async()=>{
   db=SYNC.db;
-  if(!SYNC.configured)status("Le serveur n'est pas encore relié : l'appli fonctionne, mais seulement sur ce téléphone. Suivez le guide pour coller l'adresse du serveur dans index.html.");
-  const err=e=>status(e.code==="revoked"?"L'accès à ces données a changé.":"Synchronisation interrompue, rechargez la page.");
+  if(!SYNC.configured)status("Le serveur n'est pas encore relié : l'appli fonctionne, mais seulement sur ce téléphone.");
+  const err=()=>status("Synchronisation interrompue, rechargez la page.");
   const got={r:0,s:0,f:0},ready=()=>{if(got.r&&got.s&&got.f)loaded=true;render()};
   db.collection("recettes").onSnapshot(q=>{perso=q.docs.map(d=>({id:d.id,...d.data()})).filter(r=>!r.exemple&&r.nom).map(r=>({app:"poele",min:30,saison:"t",fec:"",steps:[],origine:"fr",kids:false,reheat:false,...r,builtin:false}));got.r=1;ready()},err);
   db.doc("semaine/courante").onSnapshot(d=>{semaine=d.exists?d.data():null;got.s=1;ready()},err);
   db.doc("reglages/foyer").onSnapshot(d=>{foyer=d.exists?d.data():null;got.f=1;ready()},err);
-  db.collection("manque").onSnapshot(q=>{manque=q.docs.map(d=>({id:d.id,...d.data()})).filter(m=>m.n);render();if($("#sheet").open&&$("#mq-sheet")&&document.activeElement?.id!=="mq-sheet"){const v=$("#mq-sheet").value;sheetMq();$("#mq-sheet").value=v}},err);
+  db.collection("manque").onSnapshot(q=>{manque=q.docs.map(d=>({id:d.id,...d.data()})).filter(m=>m.n);render();if($("#sheet").open&&$("#addSearch")&&document.activeElement?.id!=="addSearch")drawAdd()},err);
 })();
+
 </script>
 </body>
 </html>
