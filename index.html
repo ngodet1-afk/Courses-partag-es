@@ -453,6 +453,49 @@ label.photo{cursor:pointer}
 .seg2 button{border:0;border-radius:12px;padding:11px;background:transparent;font-size:15px}
 .seg2 button[aria-pressed="true"]{background:var(--surface);box-shadow:var(--shadow-s)}
 .seg2 b{background:var(--olive);color:var(--surface);border-radius:99px;padding:0 7px;font-size:12px}
+
+/* v5 : calendrier, anti-oubli, commande en liste */
+a.btn{text-decoration:none;text-align:center}
+.quickacts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.quickacts button{display:grid;justify-items:center;gap:5px;padding:12px 4px;border:0;border-radius:18px;background:var(--surface);box-shadow:var(--shadow-s);font-size:12.5px;font-weight:800}
+.quickacts .emo{font-size:24px}
+.quick{display:flex;gap:8px;align-items:center}
+.quick .search input{box-shadow:none;border:1.5px solid var(--line)}
+.lwrap{position:relative}
+.lwrap .lcard{width:100%}
+.lcheck{position:absolute;left:6px;bottom:6px;width:30px;height:30px;padding:0;border-radius:50%;border:2px solid var(--line);background:var(--surface);color:transparent;font-size:14px;font-weight:900}
+.lcheck.on{background:var(--olive);border-color:var(--olive);color:var(--surface)}
+.lcheck:not(.on):hover{color:var(--muted)}
+.cmdhead{display:grid;gap:10px}
+.ring.sm{width:62px;height:62px}.ring.sm>div{width:48px;height:48px}.ring.sm b{font-size:13px}
+.crow{display:grid;grid-template-columns:auto auto 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-top:1px solid var(--line)}
+.crow.done .n{text-decoration:line-through;color:var(--muted)}
+.crow.done .cpic{opacity:.5}
+.cb{width:34px;height:34px;padding:0;border-radius:10px;border:2px solid var(--olive);background:transparent;color:var(--surface);font-weight:900;font-size:16px}
+.cb.on{background:var(--olive)}
+.cpic{width:40px;height:40px;border-radius:50%;background:var(--sunk);display:grid;place-items:center;font-size:22px;overflow:hidden}
+.cpic img{width:100%;height:100%;object-fit:cover}
+.crow .cp{width:44px;height:40px;padding:0;font-size:17px}
+.anti{display:grid;gap:14px}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kpis>div{background:var(--sunk);border-radius:16px;padding:10px 12px}
+.kpis b{display:block;font-family:var(--display);font-weight:600;font-size:22px;font-variant-numeric:tabular-nums}
+.kpis small{color:var(--muted);font-weight:700;font-size:12px}
+.kpis .warn{background:var(--saffron-soft)}
+.pchk{display:flex;flex-wrap:wrap;gap:6px}
+.pc{padding:7px 12px 7px 9px;border-radius:99px;font-size:13px;border-color:transparent;background:var(--sunk)}
+.pc .emo{font-size:17px}
+.pc.on{background:var(--olive);color:var(--surface)}
+.secours{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--sky-soft);border-radius:16px;padding:12px}
+.secours>.emo{font-size:26px}
+.secours b{display:block}.secours small{color:var(--muted);font-weight:600;font-size:12.5px;line-height:1.3;display:block}
+.secours.ok{background:var(--olive-soft)}
+.verifs{display:grid;gap:6px}
+.vf{display:grid;grid-template-columns:auto auto 1fr;gap:10px;align-items:center;text-align:left;padding:10px 12px;border-radius:14px;border-color:transparent;background:var(--sunk);font-size:14px;justify-content:stretch}
+.vf .box{width:26px;height:26px;border-radius:8px;border:2px solid var(--olive);display:grid;place-items:center;color:var(--surface);font-weight:900}
+.vf.on .box{background:var(--olive)}
+.vf.on{background:var(--olive-soft)}
+.vf .emo{font-size:18px}
 </style>
 </head>
 <body>
@@ -1318,8 +1361,8 @@ function etapes(s,L){
   return [
     {id:"panier",n:"Le panier bio",e:"🧺",when:"Jeudi 18h30",done:!!s.panierOk,info:s.panierOk?(panier().length?`${panier().length} produit${panier().length>1?"s":""} reçu${panier().length>1?"s":""}`:"Pas de panier cette semaine"):"Notez ce que vous avez reçu"},
     {id:"menus",n:"Les menus",e:"🍽️",when:"Jeudi soir",done:!!s.menusOk,info:s.menusOk?`${Object.keys(s.plan).length} repas prévus`:"L'appli vous propose la semaine"},
-    {id:"liste",n:"La liste de courses",e:"📝",when:"Jeudi soir",done:!!s.listeOk,info:L.items.length?`${L.items.length} articles · ~${eur(L.total)}`:"Se remplit toute seule"},
-    {id:"commande",n:"La commande drive",e:"🛒",when:"Jeudi soir",done:!!s.commandeOk,info:s.commandeOk?"Commande passée":L.items.length?`${L.items.length-left}/${L.items.length} commandés`:"Article par article"},
+    {id:"liste",n:"La liste de courses",e:"📝",when:"Après les menus",done:!!s.listeOk,info:L.items.length?`${L.items.length} articles · ~${eur(L.total)}`:"Se remplit toute seule"},
+    {id:"commande",n:"La commande drive",e:"🛒",when:commandeTxt(),done:!!s.commandeOk,info:s.commandeOk?"Commande passée":L.items.length?`${L.items.length-left}/${L.items.length} dans le panier`:"Toute la liste au même endroit"},
     {id:"retrait",n:"Le retrait",e:"🚗",when:retraitTxt(),done:!!s.retraitOk,info:s.retraitOk?"Courses récupérées":"À ne pas oublier"}
   ];
 }
@@ -1332,7 +1375,7 @@ function render(){
   const d0=parseISO(s.debut),d6=new Date(d0);d6.setDate(d6.getDate()+6);
   const range=`Semaine du ${d0.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})} au ${d6.toLocaleDateString("fr-FR",{day:"numeric",month:"long"})}`;
   const T={semaine:["Notre semaine",range],panier:["Le panier bio","Étape 1 sur 4 · jeudi 18h30"],menus:["Les menus","Étape 2 sur 4"],liste:["La liste de courses",`${L.items.length} articles · environ ${eur(L.total)}`],
-    commande:["La commande","Étape 4 sur 4 · retrait "+retraitTxt().toLowerCase()],recettes:["Nos recettes",`${all().length} plats, dont ${all().filter(r=>r.app==="thermomix").length} au Thermomix et ${all().filter(r=>r.app==="airfryer").length} à l'Airfryer`],foyer:["Réglages","Notre foyer"]}[view];
+    commande:["La commande",commandeTxt()+" · retrait "+retraitTxt().toLowerCase()],recettes:["Nos recettes",`${all().length} plats, dont ${all().filter(r=>r.app==="thermomix").length} au Thermomix et ${all().filter(r=>r.app==="airfryer").length} à l'Airfryer`],foyer:["Réglages","Notre foyer"]}[view];
   const band=$("#band");band.className="band gut"+(view==="semaine"?"":" small");
   band.innerHTML=`<div class="wrap"><div class="row spread" style="align-items:flex-start;flex-wrap:nowrap"><div><div class="kicker">${T[1]}</div><h1>${T[0]}</h1><span id="sync" class="sync"></span></div>
     <a class="gear" href="#foyer" aria-label="Réglages">⚙️</a></div></div>`;
@@ -1353,7 +1396,7 @@ function vHome(s,L){
   return `
   ${nouvelle?`<section class="card newweek"><span class="emo">🌱</span><div><h2 style="font-size:19px">C'est reparti pour une semaine</h2><p class="hint">On vide le panier et les menus. Ce qui a été noté et pas commandé reste sur la liste.</p></div><button class="sun" id="newWeek">Commencer</button></section>`:""}
   <section class="card ritual">
-    <div class="lab">Le rituel du jeudi</div>
+    <div class="row spread"><div class="lab">Le rituel du jeudi</div><span class="hint" style="font-size:12px">dans l'ordre que vous voulez</span></div>
     <ol class="steps2">${st.map((e,i)=>`<li class="${e.done?"done":""} ${i===cur?"cur":""}">
       <button class="stp" ${e.id==="retrait"?(s.commandeOk&&!s.retraitOk?`id="retraitOk"`:`data-go="semaine"`):`data-go="${e.id}"`}>
         <span class="si emo">${e.done?"✓":e.e}</span><span class="st"><b>${e.n}</b><small>${esc(e.when)} · ${esc(e.info)}</small></span>
@@ -1361,6 +1404,7 @@ function vHome(s,L){
     ${cur>=0&&cur<4?`<button class="primary big" data-go="${st[cur].id}">${st[cur].e} ${["Noter mon panier","Choisir les menus","Vérifier la liste","Passer la commande"][cur]}</button>`:""}
     ${cur===4?`<p class="okline">🎉 Commande passée. Rendez-vous ${esc(retraitTxt().toLowerCase())}.</p>`:""}
   </section>
+  <section class="quickacts"><button data-go="panier"><span class="emo">🧺</span>Mon panier</button><button id="addProd2"><span class="emo">📝</span>Il manque</button><button data-go="liste"><span class="emo">🛒</span>La liste</button><button data-go="recettes"><span class="emo">📖</span>Recettes</button></section>
   ${r?`<section class="card tonight"><span class="plate">${r.icone}</span><div><div class="when">${ti>=0&&ti<=6?"Ce soir":"Jeudi soir"}</div><h3>${esc(r.nom)}</h3><div class="chips">${chips(r,false)}</div></div>
     <div class="acts">${r.type?`<button class="soft" data-open="${r.id}">📖 La recette</button>`:""}</div></section>`:""}
   ${Object.keys(s.plan).length?`<section style="display:grid;gap:10px"><div class="row spread"><h2>Au menu cette semaine</h2><button class="ghost seeall" data-go="menus">Modifier ›</button></div>
@@ -1429,23 +1473,27 @@ const prefOf=id=>(F().prefs||{})[id]||{};
 const KIND=i=>i.manuel?["📝","ajouté"]:i.why.startsWith("pour ")?["🍽️","menus"]:["⭐","chaque semaine"];
 function picOf(id,n,cls=""){const p=prefOf(id);return p.photo?`<img class="${cls}" src="${p.photo}" alt="${esc(n)}">`:`<span class="emo ${cls}">${emojiFor(n)}</span>`}
 function vListe(s,L){
-  const groups=TOPS.map(([id,n,e])=>({id,n,e,it:L.items.filter(i=>i.top===id)})).filter(g=>g.it.length);
+  const vis=shopHideDone?L.items.filter(i=>!s.coches[i.id]):L.items,nDone=L.items.length-L.items.filter(i=>!s.coches[i.id]).length;
+  const groups=TOPS.map(([id,n,e])=>({id,n,e,it:vis.filter(i=>i.top===id)})).filter(g=>g.it.length);
   const nb=k=>L.items.filter(i=>KIND(i)[1]===k).length;
   return `
   <section class="card listhead">
     <div class="row spread" style="align-items:flex-start"><div><h2 style="font-size:20px">${L.items.length?`${L.items.length} articles à acheter`:"La liste est vide"}</h2>
       <p class="hint">${L.items.length?`Environ ${eur(L.total)} · budget ${F().budget} €`:"Choisissez les menus : les ingrédients arrivent ici tout seuls."}</p></div></div>
     ${L.items.length?`<div class="legend"><span>🍽️ ${nb("menus")} pour les menus</span><span>⭐ ${nb("chaque semaine")} essentiels</span><span>📝 ${nb("ajouté")} ajoutés</span></div>`:""}
+    <form class="quick" id="quickForm"><div class="search" style="flex:1"><input id="quickIn" placeholder="Ajouter vite : café, 2 lait, piles…" autocomplete="off" enterkeyhint="done" aria-label="Produit à ajouter"></div><button class="primary" type="submit">Ajouter</button></form>
     <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      <button class="sun big2" id="addProd">➕ Ajouter</button><button class="primary big2" data-go="commande" ${L.items.length?"":"disabled"}>🛒 Commander</button></div>
+      <button class="sun big2" id="addProd">🏪 Par rayon</button><button class="primary big2" data-go="commande" ${L.items.length?"":"disabled"}>🛒 Commander</button></div>
+    ${nDone?`<button class="ghost" id="shopHideDone" style="justify-self:start">${shopHideDone?`👁️ Revoir les ${nDone} cochés`:`✓ Masquer les ${nDone} cochés`}</button>`:""}
   </section>
   ${groups.map(g=>`<section class="lsec"><h3><span class="emo">${g.e}</span>${g.n}<small>${g.it.length}</small></h3>
-    <div class="lgrid">${g.it.map(i=>{const p=prefOf(i.id),k=KIND(i);return `<button class="lcard ${s.coches[i.id]?"done":""}" data-item="${esc(i.id)}">
+    <div class="lgrid">${g.it.map(i=>{const p=prefOf(i.id),k=KIND(i),on=!!s.coches[i.id];return `<div class="lwrap"><button class="lcard ${on?"done":""}" data-item="${esc(i.id)}">
       <span class="lpic">${picOf(i.id,i.n)}</span><span class="lq">${esc(fmtQ(i.q??1,i.u))}</span><span class="lk" title="${k[1]}">${k[0]}</span>
-      <span class="ln">${esc(i.n)}</span>${p.note?`<span class="lnote">${esc(p.note)}</span>`:""}</button>`}).join("")}</div></section>`).join("")}
+      <span class="ln">${esc(i.n)}</span>${p.note?`<span class="lnote">${esc(p.note)}</span>`:""}</button>
+      <button class="lcheck ${on?"on":""}" data-shopcheck="${esc(i.id)}" aria-pressed="${on}" aria-label="${on?"Décocher":"Cocher"} ${esc(i.n)}">✓</button></div>`}).join("")}</div></section>`).join("")}
   ${L.retires.length?`<p class="hint">Retirés : ${esc(L.retires.map(r=>r.n).join(", "))} · <button class="ghost link" id="restore">Remettre</button></p>`:""}
   ${L.skip.length?`<p class="hint">🏡 Déjà à la maison (panier bio ou placard) : ${esc([...new Set(L.skip.map(x=>x.toLowerCase()))].join(", "))}</p>`:""}
-  ${L.items.length?`<div class="ctabar"><span class="hint">Touchez un article pour changer la quantité, ajouter une précision ou une photo.</span><button class="primary big" id="listeOk">La liste est prête ›</button></div>`:""}`;
+  ${L.items.length?`<div class="ctabar"><span class="hint">Touchez un article pour la quantité, une précision ou une photo. ✓ coche un article déjà pris.</span><button class="primary big" id="listeOk">La liste est prête ›</button></div>`:""}`;
 }
 function sheetItem(id,fresh){
   const it=liste().items.find(i=>i.id===id);if(!it){closeSheet();return}
@@ -1495,25 +1543,67 @@ async function addProduct(n,free){
   return k;
 }
 
-// ---------- Étape 4 : commande ----------
+// ---------- Calendrier, anti-oubli, commande en liste ----------
+function commandeTxt(){return F().commandeMoment||"Jeudi soir"}
+function driveUrl(){return F().driveUrl||"https://www.leclercdrive.fr/"}
+let shopHideDone=false,cmdMode="liste",payConfirm=0;
+const PLACARD_CHECK=["Lait","Œufs","Beurre","Pain de mie","Pâtes","Riz","Café","Papier toilette","Yaourts","Céréales","Liquide vaisselle","Sacs poubelle"];
+const SECOURS=[{n:"Pâtes",e:"🍝"},{n:"Coulis de tomate",e:"🥫"},{n:"Thon en boîte",e:"🐟"}];
+const VERIFS=[["repas","🍽️","Tous les repas jusqu'au prochain drive sont prévus"],["petitdej","🥣","Petits-déjeuners, goûters et hygiène vérifiés"],["creneau","🚗","Quantités vérifiées et créneau de retrait réservé"]];
+function antiOubli(s,L){
+  const present=new Set(L.items.map(x=>key(x.n))),f=F(),budget=+f.budget||0;
+  const cov=slots().filter(x=>!!byId(s.plan[x.k])).length,ns=slots().length;
+  const sec=SECOURS.every(x=>present.has(key(x.n)));const v=s.verifs||{};
+  return `<section class="card anti">
+    <div><div class="lab">🛡️ Zéro dépannage au village</div><h2 style="font-size:20px;margin-top:4px">Avant de payer, on vérifie</h2>
+      <p class="hint">Une seule grosse commande, sans rien oublier : c'est là que se font les économies.</p></div>
+    <div class="kpis"><div class="${cov<ns?"warn":""}"><b>${cov}/${ns}</b><small>repas prévus</small></div><div class="${budget&&L.total>budget?"warn":""}"><b>${eur(L.total)}</b><small>estimés · budget ${budget} €</small></div></div>
+    ${cov<ns?`<button class="soft" data-go="menus">🍽️ Compléter les ${ns-cov} repas manquants</button>`:""}
+    <div><b>🏡 Un coup d'œil dans les placards</b><p class="hint" style="margin:2px 0 8px">Touchez seulement ce qu'il faut racheter.</p>
+      <div class="pchk">${PLACARD_CHECK.map(n=>{const on=present.has(key(n));return `<button class="pc ${on?"on":""}" data-anti="${esc(n)}" aria-pressed="${on}"><span class="emo">${emojiFor(n)}</span>${esc(n)}</button>`}).join("")}</div></div>
+    <div class="secours ${sec?"ok":""}"><span class="emo">🆘</span><div><b>Le repas de secours</b><small>Pâtes, sauce tomate et thon dans le placard : le soir où rien ne va, pas besoin d'aller au village.</small></div>
+      ${sec?`<span class="okline">✓</span>`:`<button class="soft" id="addSecours">Ajouter</button>`}</div>
+    <div class="verifs">${VERIFS.map(([k,e,t])=>`<button class="vf ${v[k]?"on":""}" data-verif="${k}" aria-pressed="${!!v[k]}"><span class="box">${v[k]?"✓":""}</span><span class="emo">${e}</span>${t}</button>`).join("")}</div>
+  </section>`;
+}
+function driveText(items){return TOPS.map(([id,n])=>{const a=items.filter(i=>i.top===id);return a.length?n.toUpperCase()+"\n"+a.map(i=>`• ${i.n} — ${fmtQ(i.q??1,i.u)}${prefOf(i.id).note?` (${prefOf(i.id).note})`:""}`).join("\n"):""}).filter(Boolean).join("\n\n")}
+async function copyOrShow(txt,okMsg,title){try{await navigator.clipboard.writeText(txt);toast(okMsg);return true}catch(_){openSheet(`<div class="row spread"><h2>${esc(title||"À copier")}</h2><button class="ghost" data-close aria-label="Fermer">✕</button></div><textarea readonly style="min-height:260px" onfocus="this.select()">${esc(txt)}</textarea><p class="hint">Restez appuyé dans le texte, puis « Tout sélectionner » et « Copier ».</p>`);return false}}
+
 function vCommande(s,L){
   const left=L.items.filter(i=>!s.coches[i.id]),tot=L.items.length,done=tot-left.length;
   if(!tot)return `${back}<div class="empty"><span class="emo">🛒</span><strong>Rien à commander</strong>Préparez d'abord la liste.</div>`;
-  if(!left.length)return `${back}<section class="card finish"><span class="emo">🎉</span><h2>Commande passée !</h2><p class="hint">Il ne reste qu'à valider le panier sur le site du drive.</p>
-    <div class="rdv"><span class="emo">🚗</span><div><b>${esc(retraitTxt())}</b><small>Retrait des courses</small></div></div>
-    <button class="primary big" id="commandeOk">C'est fait</button><button class="ghost" id="uncheck">Tout recommencer</button></section>`;
-  if(cmdIdx>=left.length)cmdIdx=0;const it=left[cmdIdx],pp=prefOf(it.id),term=pp.note||searchTerm(it.n);
-  return `${back}
-  <section class="card cmd">
-    <div class="row spread"><span class="lab">Article ${done+1} sur ${tot}</span><span class="hint">${esc(TOPS.find(t=>t[0]===it.top)?.[1]||"")}</span></div>
-    <div class="progress"><i style="width:${Math.round(done/tot*100)}%"></i></div>
-    <div class="cmdcard"><span class="bigemo">${picOf(it.id,it.n)}</span><h2>${esc(it.n)}</h2><p class="qbig">${esc(fmtQ(it.q??1,it.u))}</p>${pp.note?`<p class="cnote">👉 ${esc(pp.note)}</p>`:""}</div>
-    <button class="soft big ${lastCopied===it.id?"copied":""}" data-copy="${esc(it.id)}" data-term="${esc(term)}">${lastCopied===it.id?"✓ Copié, collez-le dans le drive":`📋 Copier « ${esc(term)} »`}</button>
-    <button class="primary big" data-done="${esc(it.id)}">✓ Commandé, suivant</button>
-    <button class="ghost" id="skipItem">Passer pour l'instant</button>
-  </section>
-  <details class="card"><summary class="lab" style="cursor:pointer">Voir toute la liste (${done}/${tot} commandés)</summary>
-    <div style="display:grid;gap:4px;margin-top:10px">${L.items.map(i=>`<label class="ck2"><input type="checkbox" data-chk2="${esc(i.id)}" ${s.coches[i.id]?"checked":""}><span class="emo">${emojiFor(i.n)}</span>${esc(i.n)} <small>${esc(fmtQ(i.q??1,i.u))}</small></label>`).join("")}</div></details>`;
+  const head=`<section class="card cmdhead">
+    <div class="row spread"><div><h2 style="font-size:20px">🛒 Ma commande Leclerc Drive</h2><p class="hint">${left.length} à mettre au panier · ${done} déjà fait${done>1?"s":""}</p></div>
+      <div class="ring sm" style="--p:${Math.round(done/tot*100)}"><div><b>${done}/${tot}</b></div></div></div>
+    <a class="btn primary big" href="${esc(driveUrl())}" target="_blank" rel="noopener">🌐 Ouvrir le site du drive ↗</a>
+    <button class="soft big" id="driveCopyAll" ${left.length?"":"disabled"}>📋 Copier les ${left.length} produits restants</button>
+    <p class="hint">Astuce : sur le site, commencez par « Mes produits habituels », puis cherchez le reste. Cochez ici au fur et à mesure.</p>
+    <div class="seg2"><button aria-pressed="${cmdMode==="liste"}" data-cmode="liste">📋 Toute la liste</button><button aria-pressed="${cmdMode==="pas"}" data-cmode="pas">👆 Un par un</button></div>
+  </section>`;
+  let body="";
+  if(!left.length)body="";
+  else if(cmdMode==="pas"){
+    if(cmdIdx>=left.length)cmdIdx=0;const it=left[cmdIdx],pp=prefOf(it.id),term=pp.note||searchTerm(it.n);
+    body=`<section class="card cmd">
+      <div class="row spread"><span class="lab">Article ${done+1} sur ${tot}</span><span class="hint">${esc(TOPS.find(t=>t[0]===it.top)?.[1]||"")}</span></div>
+      <div class="cmdcard"><span class="bigemo">${picOf(it.id,it.n)}</span><h2>${esc(it.n)}</h2><p class="qbig">${esc(fmtQ(it.q??1,it.u))}</p>${pp.note?`<p class="cnote">👉 ${esc(pp.note)}</p>`:""}</div>
+      <button class="soft big ${lastCopied===it.id?"copied":""}" data-copy="${esc(it.id)}" data-term="${esc(term)}">${lastCopied===it.id?"✓ Copié, collez-le dans le drive":`📋 Copier « ${esc(term)} »`}</button>
+      <button class="primary big" data-done="${esc(it.id)}">✓ Dans le panier, suivant</button>
+      <button class="ghost" id="skipItem">Passer pour l'instant</button></section>`;
+  }else{
+    const vis=shopHideDone?left:L.items;
+    body=`<div class="row spread"><span class="hint">Touchez 📋 pour copier le mot à chercher, puis ✓ quand c'est dans le panier.</span><button class="ghost" id="shopHideDone">${shopHideDone?"Voir aussi les cochés":"Masquer les cochés"}</button></div>
+    ${TOPS.map(([id,n,e])=>{const a=vis.filter(i=>i.top===id);if(!a.length)return"";return `<section class="rayon"><h3><span class="emo">${e}</span>${n}<small>${a.filter(i=>s.coches[i.id]).length}/${a.length}</small></h3>${a.map(i=>{const on=!!s.coches[i.id],pp=prefOf(i.id),term=pp.note||searchTerm(i.n);
+      return `<div class="crow ${on?"done":""}"><button class="cb ${on?"on":""}" data-shopcheck="${esc(i.id)}" aria-pressed="${on}" aria-label="${on?"Décocher":"Cocher"} ${esc(i.n)}">${on?"✓":""}</button>
+        <span class="cpic">${picOf(i.id,i.n)}</span><div class="n">${esc(i.n)} <span class="q">${esc(fmtQ(i.q??1,i.u))}</span>${pp.note?`<span class="src" style="color:var(--sky)">👉 ${esc(pp.note)}</span>`:""}</div>
+        <button class="cp ${lastCopied===i.id?"on":""}" data-copy="${esc(i.id)}" data-term="${esc(term)}" aria-label="Copier « ${esc(term)} »">${lastCopied===i.id?"✓":"📋"}</button></div>`}).join("")}</section>`}).join("")}`;
+  }
+  const fin=`<section class="card finish">${left.length?"":`<span class="emo">🎉</span><h2>Tout est dans le panier du drive</h2>`}
+    <div class="rdv"><span class="emo">🚗</span><div><b>${esc(retraitTxt())}</b><small>Retrait prévu · créneau à confirmer sur le site</small></div></div>
+    <button class="${payConfirm?"sun":"primary"} big" id="commandeOk">${payConfirm?"Oui, c'est payé et confirmé ✓":"✓ J'ai validé et payé sur le site"}</button>
+    <p class="hint">${payConfirm?"Touchez encore une fois pour confirmer.":"L'appli ne commande et ne paie rien elle-même : touchez ce bouton une fois la confirmation reçue."}</p>
+    ${done?`<button class="ghost" id="uncheck">Tout décocher</button>`:""}</section>`;
+  return `${back}${head}${body}${antiOubli(s,L)}${fin}`;
 }
 
 // ---------- Réglages ----------
@@ -1527,8 +1617,13 @@ function vFoyer(){const f=F(),s=S();
   <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">⭐ Mes essentiels</h2><p class="hint">Ajoutés automatiquement à chaque liste. 0 pour sauter une semaine.</p>
     <div class="ess">${f.essentiels.map((e,ix)=>`<div class="essi ${e.q?"":"zero"}"><span class="emo">${emojiFor(e.n)}</span><div><div class="nm">${esc(e.n)}</div><span class="stepper"><button data-ess="${ix}:-1">−</button><b>${e.q}</b><button data-ess="${ix}:1">+</button></span></div></div>`).join("")}</div>
     <button class="soft" id="essAdd" style="justify-self:start">➕ Ajouter un essentiel</button></section>
-  <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">🚗 Retrait des courses</h2>
-    <input id="sRetrait" value="${esc(retraitTxt())}"><button class="soft" id="saveRetrait" style="justify-self:start">Enregistrer</button></section>
+  <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">📅 Notre calendrier</h2>
+    <p class="hint">Le panier bio arrive le jeudi : on fait les menus, puis la commande, puis le retrait.</p>
+    <label class="f">🛒 Quand passer la commande<input id="sCommandeMoment" value="${esc(commandeTxt())}" placeholder="Jeudi soir"></label>
+    <label class="f">🚗 Retrait des courses<input id="sRetrait" value="${esc(retraitTxt())}" placeholder="Vendredi 16h00 · Drive de Salon"></label>
+    <label class="f">🌐 Adresse du site du drive<input id="sDrive" value="${esc(driveUrl())}" placeholder="https://www.leclercdrive.fr/" inputmode="url"></label>
+    <p class="hint">Astuce : collez l'adresse de la page de votre magasin pour l'ouvrir directement.</p>
+    <button class="soft" id="saveRetrait" style="justify-self:start">Enregistrer notre calendrier</button></section>
   <section class="card" style="display:grid;gap:10px"><h2 style="font-size:19px">🫙 Toujours au placard</h2><p class="hint">Jamais ajoutés automatiquement à la liste.</p>
     <input id="sPlac" value="${esc(f.placard.join(", "))}"><button class="soft" id="savePlac" style="justify-self:start">Enregistrer</button></section>
   <section class="card" style="display:grid;gap:6px"><h2 style="font-size:19px">💞 À deux</h2><p class="hint">Envoyez le lien de l'appli à Aurélie et ajoutez-la à l'écran d'accueil de vos téléphones. Vous voyez la même semaine et la même liste.</p></section>`}
@@ -1537,7 +1632,7 @@ function newWeek(){const s=S(),nd=parseISO(s.debut);while(nd<=lastThursday()&&is
   if(iso(nd)===s.debut)nd.setDate(nd.getDate()+7);
   const recent=[...Object.values(s.plan),...s.recent].filter(x=>x&&x!=="restes").slice(0,14);
   manque.filter(m=>s.coches[key(m.n)]).forEach(m=>db&&db.doc("manque/"+m.id).delete().catch(()=>{}));
-  saveSemaine({debut:iso(nd),panier:[],plan:{},verrous:{},coches:{},qte:{},extras:[],recent,panierOk:false,menusOk:false,listeOk:false,commandeOk:false,retraitOk:false});
+  saveSemaine({debut:iso(nd),panier:[],plan:{},verrous:{},coches:{},qte:{},extras:[],recent,verifs:{},panierOk:false,menusOk:false,listeOk:false,commandeOk:false,retraitOk:false});
   cmdIdx=0;toast("Nouvelle semaine prête 🌱");go("semaine")}
 
 // ================= Événements =================
@@ -1556,7 +1651,7 @@ document.addEventListener("click",async e=>{
   if(t.id==="panierOk"){await saveSemaine({panierOk:true,plan:s.menusOk?s.plan:genere()});go("menus");return}
   // menus
   if(t.id==="gen"){await saveSemaine({plan:genere()});toast("Nouvelles idées ✨");return}
-  if(t.id==="menusOk"){await saveSemaine({menusOk:true,panierOk:true});go("liste");return}
+  if(t.id==="menusOk"){await saveSemaine({menusOk:true});go("liste");return}
   if(d.day){sheetDay(d.day);return}
   if(d.setday||d.pickday){const k=d.setday||d.pickday;saveSemaine({plan:{...s.plan,[k]:d.rid}});closeSheet();if(pickFor){pickFor=null;go("menus")}else if(d.pickday)toast("Ajouté au menu 📅");return}
   if(d.daylock){saveSemaine({verrous:{...s.verrous,[d.daylock]:!s.verrous[d.daylock]}});closeSheet();return}
@@ -1577,13 +1672,22 @@ document.addEventListener("click",async e=>{
   if(t.id==="restore"){const qte={...(s.qte||{})};Object.keys(qte).forEach(k=>{if(qte[k]<=0)delete qte[k]});saveSemaine({qte});return}
   if(t.id==="listeOk"){await saveSemaine({listeOk:true});go("commande");return}
   // commande
-  if(d.copy){try{await navigator.clipboard.writeText(d.term);lastCopied=d.copy;toast(`« ${d.term} » copié`)}catch(_){toast("Copie impossible : le mot à chercher est « "+d.term+" »")}render();return}
+  if(d.copy){const ok=await copyOrShow(d.term,`« ${d.term} » copié`,"Le mot à chercher");if(ok){lastCopied=d.copy;render()}return}
   if(d.done){if(Date.now()-doneLock<700)return;doneLock=Date.now();lastCopied=null;cmdIdx=Math.min(cmdIdx,999);saveSemaine({coches:{...s.coches,[d.done]:true}});window.scrollTo(0,0);return}
   if(d.item){sheetItem(d.item);return}
   if(d.rm){const qte={...(s.qte||{}),[d.rm]:0};const m=manque.find(x=>key(x.n)===d.rm);if(m&&db)db.doc("manque/"+m.id).delete().catch(()=>{});closeSheet();saveSemaine({qte});toast("Retiré de la liste");return}
   if(d.nophoto){await savePref(d.nophoto,{photo:null});sheetItem(d.nophoto);return}
   if(t.id==="skipItem"){cmdIdx++;lastCopied=null;render();return}
-  if(t.id==="commandeOk"){await saveSemaine({commandeOk:true,listeOk:true});go("semaine");toast("Bravo ! Retrait "+retraitTxt().toLowerCase());return}
+  if(t.id==="commandeOk"){if(!payConfirm||Date.now()-payConfirm>6000){payConfirm=Date.now();render();setTimeout(()=>{if(payConfirm&&Date.now()-payConfirm>=6000){payConfirm=0;if(view==="commande")render()}},6100);return}
+    payConfirm=0;await saveSemaine({commandeOk:true,listeOk:true});go("semaine");toast("Bravo ! Retrait "+retraitTxt().toLowerCase());return}
+  if(t.id==="driveCopyAll"){const rest=liste().items.filter(i=>!s.coches[i.id]);await copyOrShow(driveText(rest),`📋 ${rest.length} produits copiés`,"La liste pour le drive");return}
+  if(d.cmode){cmdMode=d.cmode;cmdIdx=0;render();return}
+  if(t.id==="shopHideDone"){shopHideDone=!shopHideDone;render();return}
+  if(d.shopcheck!=null){const co={...s.coches};if(co[d.shopcheck])delete co[d.shopcheck];else co[d.shopcheck]=true;lastCopied=null;saveSemaine({coches:co});return}
+  if(d.anti){const k=key(d.anti),inL=liste().items.find(i=>i.id===k);if(inL&&inL.manuel){const m=manque.find(x=>key(x.n)===k);if(m&&db)await db.doc("manque/"+m.id).delete();toast("Retiré : "+d.anti)}else if(!inL){await addProduct(d.anti,false)}else toast(d.anti+" est déjà sur la liste");return}
+  if(t.id==="addSecours"){for(const x of SECOURS){if(!liste().items.some(i=>i.id===key(x.n)))await addProduct(x.n,false)}toast("🆘 Repas de secours ajouté");return}
+  if(d.verif){saveSemaine({verifs:{...(s.verifs||{}),[d.verif]:!(s.verifs||{})[d.verif]}});return}
+  if(t.id==="addProd2"){sheetAdd("ajout");return}
   if(t.id==="uncheck"){saveSemaine({coches:{},commandeOk:false});return}
   if(t.id==="retraitOk"){saveSemaine({retraitOk:true});toast("Courses récupérées 🎉");return}
   if(t.id==="newWeek"){newWeek();return}
@@ -1613,8 +1717,15 @@ document.addEventListener("click",async e=>{
   if(d.ess){const[ix,dl]=d.ess.split(":").map(Number);const es=F().essentiels.map(x=>({...x}));es[ix].q=Math.max(0,es[ix].q+dl);saveFoyer({essentiels:es});return}
   if(t.id==="essAdd"){sheetAdd("ess");return}
   if(t.id==="savePlac"){saveFoyer({placard:$("#sPlac").value.split(",").map(x=>x.trim()).filter(Boolean)},"Placard enregistré");return}
-  if(t.id==="saveRetrait"){saveFoyer({retrait:$("#sRetrait").value.trim()||"Vendredi 16h00 · Drive de Salon"},"Enregistré");return}
+  if(t.id==="saveRetrait"){const u=$("#sDrive").value.trim();saveFoyer({retrait:$("#sRetrait").value.trim()||"Vendredi 16h00 · Drive de Salon",commandeMoment:$("#sCommandeMoment").value.trim()||"Jeudi soir",driveUrl:/^https:\/\//.test(u)?u:"https://www.leclercdrive.fr/"},"Calendrier enregistré");return}
 });
+document.addEventListener("submit",async e=>{if(e.target.id!=="quickForm")return;e.preventDefault();const inp=$("#quickIn"),v=inp.value.trim();if(!v)return;
+  const m=v.match(/^(\d+(?:[.,]\d+)?)\s+(.+)$/),q=m?+m[1].replace(",","."):null,n=m?m[2]:v;
+  const c=CAT.find(c=>norm(c.n)===norm(n))||CAT.find(c=>norm(c.n).startsWith(norm(n))&&norm(n).length>=3)||CAT.find(c=>norm(c.n).includes(norm(n))&&norm(n).length>=4);
+  pick.mode="ajout";const k=await addProduct(c?c.n:n,!c);
+  if(q&&k){const ex=manque.find(x=>key(x.n)===k);if(ex&&db)await db.doc("manque/"+ex.id).update({q})}
+  setTimeout(()=>{const i=$("#quickIn");if(i){i.value="";i.focus()}},60);
+  if(!c)sheetItem(k,true)});
 document.addEventListener("change",async e=>{const t=e.target;
   if(t.dataset?.note!=null){savePref(t.dataset.note,{note:t.value.trim()});toast("Précision enregistrée");return}
   if(t.dataset?.photo!=null&&t.files&&t.files[0]){const id=t.dataset.photo;toast("Photo en cours…");try{const url=await compress(t.files[0]);await savePref(id,{photo:url});toast("Photo enregistrée 📷");sheetItem(id)}catch(_){toast("Impossible de lire cette photo")}return}
